@@ -1,7 +1,7 @@
-@extends('layouts.master2')
+@extends('dashboard.layouts.master2')
 @section('css')
     <!-- Sidemenu-respoansive-tabs css -->
-    <link href="{{ URL::asset('assets/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css') }}"
+    <link href="{{ URL::asset('dashboard/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css') }}"
         rel="stylesheet">
 @endsection
 @section('content')
@@ -11,7 +11,7 @@
             <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex bg-primary-transparent">
                 <div class="row wd-100p mx-auto text-center">
                     <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
-                        <img src="{{ URL::asset('assets/img/media/login.png') }}"
+                        <img src="{{ URL::asset('dashboard/img/media/login.png') }}"
                             class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
                     </div>
                 </div>
@@ -25,23 +25,30 @@
                             <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
                                 <div class="card-sigin">
                                     <div class="mb-5 d-flex"> <a href="{{ url('/' . ($page = 'index')) }}"><img
-                                                src="{{ URL::asset('assets/img/brand/favicon.png') }}"
+                                                src="{{ URL::asset('dashboard/img/brand/favicon.png') }}"
                                                 class="sign-favicon ht-40" alt="logo"></a>
                                         <h1 class="main-logo1 ml-1 mr-0 my-auto tx-28">Va<span>le</span>x</h1>
                                     </div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
+                                            <x-auth-session-status class="mb-4" status="{{ session('status') }}" />
                                             <h2>Welcome back!</h2>
-                                            <h5 class="font-weight-semibold mb-4">Please sign in to continue.</h5>
-                                            <form action="#">
+                                            <h5 class="font-weight-semibold mb-4">الدخول كمستخدم</h5>
+                                            <form method="POST" action="{{ route('user.login') }}">
+                                                @csrf
                                                 <div class="form-group">
-                                                    <label>Email</label> <input class="form-control"
-                                                        placeholder="Enter your email" type="text">
+                                                    <label>Email</label>
+                                                    <input class="form-control" name="email" value="{{ old('email') }}"
+                                                        placeholder="Enter your email" type="email" required autofocus>
+                                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Password</label> <input class="form-control"
-                                                        placeholder="Enter your password" type="password">
-                                                </div><button class="btn btn-main-primary btn-block">Sign In</button>
+                                                    <label>Password</label>
+                                                    <input class="form-control" name="password"
+                                                        placeholder="Enter your password" type="password" required autocomplete="current-password">
+                                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                </div>
+                                                <button type="submit" class="btn btn-main-primary btn-block">Sign In</button>
                                                 <div class="row row-xs">
                                                     <div class="col-sm-6">
                                                         <button class="btn btn-block"><i class="fab fa-facebook-f"></i>
@@ -55,7 +62,8 @@
                                             </form>
                                             <div class="main-signin-footer mt-5">
                                                 <p><a href="">Forgot password?</a></p>
-                                                <p>Don't have an account? <a href="{{ url('/' . ($page = 'signup')) }}">Create
+                                                <p>Don't have an account? <a
+                                                        href="{{ url('/' . ($page = 'signup')) }}">Create
                                                         an Account</a></p>
                                             </div>
                                         </div>
