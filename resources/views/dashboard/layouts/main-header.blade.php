@@ -321,11 +321,17 @@
                         <a class="dropdown-item" href=""><i class="bx bx-slider-alt"></i> Account Settings</a>
 
                         <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault();
+                        @if (auth('web')->check())
+                            <form method="POST" action="{{ route('logout.user') }}">
+                            @else
+                                <form method="POST" action="{{ route('logout.admin') }}">
+                        @endif
+
+                        @csrf
+                        <a class="dropdown-item" href="#"
+                            onclick="event.preventDefault();
                                         this.closest('form').submit();"><i
-                                    class="bx bx-log-out"></i> تسجيل الخروج </a>
+                                class="bx bx-log-out"></i> تسجيل الخروج </a>
                         </form>
 
                     </div>

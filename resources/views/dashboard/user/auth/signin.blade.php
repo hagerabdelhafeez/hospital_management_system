@@ -1,5 +1,10 @@
 @extends('dashboard.layouts.master2')
 @section('css')
+<style>
+    .login-form {
+        display: none;
+    }
+</style>
     <!-- Sidemenu-respoansive-tabs css -->
     <link href="{{ URL::asset('dashboard/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css') }}"
         rel="stylesheet">
@@ -33,38 +38,92 @@
                                         <div class="main-signup-header">
                                             <x-auth-session-status class="mb-4" status="{{ session('status') }}" />
                                             <h2>Welcome back!</h2>
-                                            <h5 class="font-weight-semibold mb-4">الدخول كمستخدم</h5>
-                                            <form method="POST" action="{{ route('user.login') }}">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <label>Email</label>
-                                                    <input class="form-control" name="email" value="{{ old('email') }}"
-                                                        placeholder="Enter your email" type="email" required autofocus>
-                                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input class="form-control" name="password"
-                                                        placeholder="Enter your password" type="password" required autocomplete="current-password">
-                                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                                                </div>
-                                                <button type="submit" class="btn btn-main-primary btn-block">Sign In</button>
-                                                <div class="row row-xs">
-                                                    <div class="col-sm-6">
-                                                        <button class="btn btn-block"><i class="fab fa-facebook-f"></i>
-                                                            Signup with Facebook</button>
+                                            <div class="form-group">
+                                                <label for="chooseUser">حدد طريقة الدخول</label>
+                                                <select class="form-control" id="chooseUser">
+                                                    <option value="" selected disabled>اختار من القائمة</option>
+                                                    <option value="user">الدخول كمريض</option>
+                                                    <option value="admin">الدخول كأدمن</option>
+                                                </select>
+                                            </div>
+                                            {{-- User Form --}}
+                                            <div class="login-form" id="user">
+                                                <h5 class="font-weight-semibold mb-4">الدخول كمريض</h5>
+                                                <form method="POST" action="{{ route('user.login') }}">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input class="form-control" name="email"
+                                                            value="{{ old('email') }}" placeholder="Enter your email"
+                                                            type="email" required autofocus>
+                                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                                     </div>
-                                                    <div class="col-sm-6 mg-t-10 mg-sm-t-0">
-                                                        <button class="btn btn-info btn-block"><i
-                                                                class="fab fa-twitter"></i> Signup with Twitter</button>
+                                                    <div class="form-group">
+                                                        <label>Password</label>
+                                                        <input class="form-control" name="password"
+                                                            placeholder="Enter your password" type="password" required
+                                                            autocomplete="current-password">
+                                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                                     </div>
+                                                    <button type="submit" class="btn btn-main-primary btn-block">Sign
+                                                        In</button>
+                                                    <div class="row row-xs">
+                                                        <div class="col-sm-6">
+                                                            <button class="btn btn-block"><i class="fab fa-facebook-f"></i>
+                                                                Signup with Facebook</button>
+                                                        </div>
+                                                        <div class="col-sm-6 mg-t-10 mg-sm-t-0">
+                                                            <button class="btn btn-info btn-block"><i
+                                                                    class="fab fa-twitter"></i> Signup with Twitter</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="main-signin-footer mt-5">
+                                                    <p><a href="">Forgot password?</a></p>
+                                                    <p>Don't have an account? <a
+                                                            href="{{ url('/' . ($page = 'signup')) }}">Create
+                                                            an Account</a></p>
                                                 </div>
-                                            </form>
-                                            <div class="main-signin-footer mt-5">
-                                                <p><a href="">Forgot password?</a></p>
-                                                <p>Don't have an account? <a
-                                                        href="{{ url('/' . ($page = 'signup')) }}">Create
-                                                        an Account</a></p>
+                                            </div>
+
+                                            {{-- Admin Form --}}
+                                            <div class="login-form" id="admin">
+                                                <h5 class="font-weight-semibold mb-4">الدخول كأدمن</h5>
+                                                <form method="POST" action="{{ route('admin.login') }}">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input class="form-control" name="email"
+                                                            value="{{ old('email') }}" placeholder="Enter your email"
+                                                            type="email" required autofocus>
+                                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Password</label>
+                                                        <input class="form-control" name="password"
+                                                            placeholder="Enter your password" type="password" required
+                                                            autocomplete="current-password">
+                                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                    </div>
+                                                    <button type="submit" class="btn btn-main-primary btn-block">Sign
+                                                        In</button>
+                                                    <div class="row row-xs">
+                                                        <div class="col-sm-6">
+                                                            <button class="btn btn-block"><i class="fab fa-facebook-f"></i>
+                                                                Signup with Facebook</button>
+                                                        </div>
+                                                        <div class="col-sm-6 mg-t-10 mg-sm-t-0">
+                                                            <button class="btn btn-info btn-block"><i
+                                                                    class="fab fa-twitter"></i> Signup with Twitter</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="main-signin-footer mt-5">
+                                                    <p><a href="">Forgot password?</a></p>
+                                                    <p>Don't have an account? <a
+                                                            href="{{ url('/' . ($page = 'signup')) }}">Create
+                                                            an Account</a></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -78,4 +137,12 @@
     </div>
 @endsection
 @section('js')
+<script>
+    $('#chooseUser').change(function () {
+        var myId = $(this).val();
+        $('.login-form').each(function() {
+            myId === $(this).attr('id') ? $(this).show() : $(this).hide();
+        });
+    });
+</script>
 @endsection
