@@ -43,7 +43,7 @@ class AdminLoginRequest extends FormRequest
         if (!auth('admin')->attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
-            throw ValidationException::withMessages(['email' => trans('auth.failed')]);
+            throw ValidationException::withMessages(['email' => trans('dashboard/auth.failed')]);
         }
 
         RateLimiter::clear($this->throttleKey());

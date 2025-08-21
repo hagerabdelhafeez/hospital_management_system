@@ -1,10 +1,10 @@
 @extends('dashboard.layouts.master2')
 @section('css')
-<style>
-    .login-form {
-        display: none;
-    }
-</style>
+    <style>
+        .login-form {
+            display: none;
+        }
+    </style>
     <!-- Sidemenu-respoansive-tabs css -->
     <link href="{{ URL::asset('dashboard/plugins/sidemenu-responsive-tabs/css/sidemenu-responsive-tabs.css') }}"
         rel="stylesheet">
@@ -36,19 +36,28 @@
                                     </div>
                                     <div class="card-sigin">
                                         <div class="main-signup-header">
-                                            <x-auth-session-status class="mb-4" status="{{ session('status') }}" />
-                                            <h2>Welcome back!</h2>
+                                            {{-- <x-auth-session-status class="mb-4" status="{{ session('status') }}" /> --}}
+                                            <h2>{{ __('dashboard/login.welcome_back') }}</h2>
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
                                             <div class="form-group">
-                                                <label for="chooseUser">حدد طريقة الدخول</label>
+                                                <label for="chooseUser">{{ __('dashboard/login.Select_Enter') }}</label>
                                                 <select class="form-control" id="chooseUser">
-                                                    <option value="" selected disabled>اختار من القائمة</option>
-                                                    <option value="user">الدخول كمريض</option>
-                                                    <option value="admin">الدخول كأدمن</option>
+                                                    <option value="" selected disabled>{{ __('dashboard/login.Choose_list') }}</option>
+                                                    <option value="user">{{ __('dashboard/login.user') }}</option>
+                                                    <option value="admin">{{ __('dashboard/login.admin') }}</option>
                                                 </select>
                                             </div>
                                             {{-- User Form --}}
                                             <div class="login-form" id="user">
-                                                <h5 class="font-weight-semibold mb-4">الدخول كمريض</h5>
+                                                <h5 class="font-weight-semibold mb-4">{{ __('dashboard/login.user') }}</h5>
                                                 <form method="POST" action="{{ route('user.login') }}">
                                                     @csrf
                                                     <div class="form-group">
@@ -88,7 +97,7 @@
 
                                             {{-- Admin Form --}}
                                             <div class="login-form" id="admin">
-                                                <h5 class="font-weight-semibold mb-4">الدخول كأدمن</h5>
+                                                <h5 class="font-weight-semibold mb-4">{{ __('dashboard/login.admin') }}</h5>
                                                 <form method="POST" action="{{ route('admin.login') }}">
                                                     @csrf
                                                     <div class="form-group">
@@ -137,12 +146,12 @@
     </div>
 @endsection
 @section('js')
-<script>
-    $('#chooseUser').change(function () {
-        var myId = $(this).val();
-        $('.login-form').each(function() {
-            myId === $(this).attr('id') ? $(this).show() : $(this).hide();
+    <script>
+        $('#chooseUser').change(function() {
+            var myId = $(this).val();
+            $('.login-form').each(function() {
+                myId === $(this).attr('id') ? $(this).show() : $(this).hide();
+            });
         });
-    });
-</script>
+    </script>
 @endsection
