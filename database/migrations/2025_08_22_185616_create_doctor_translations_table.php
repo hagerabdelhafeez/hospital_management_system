@@ -1,11 +1,11 @@
 <?php
 
+use App\Models\Doctor;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('doctor_translations', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignIdFor(Doctor::class)->constrained('doctors')->onDelete('cascade');
+            $table->string('locale')->index();
+            $table->string('name');
+            $table->string('appointments');
+            $table->unique(['doctor_id', 'locale']);
         });
     }
 

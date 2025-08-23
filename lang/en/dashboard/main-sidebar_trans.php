@@ -5,4 +5,5 @@ return [
     'index' => 'Home',
     'sections' => 'Sections',
     'view_all' => 'Show All',
+    'doctors' => 'Doctors',
 ];
