@@ -37,6 +37,6 @@ trait UploadTrait
     public function Delete_attachment($disk, $path, $id, $filename)
     {
         Storage::disk($disk)->delete($path);
-        Image::where('id', $id)->where('filename', $filename)->delete();
+        Image::where('imageable_id', $id)->delete();
     }
 }

@@ -18,7 +18,6 @@ return new class extends Migration {
             $table->string('password');
             $table->foreignIdFor(Section::class)->constrained('sections')->onDelete('cascade');
             $table->string('phone');
-            $table->decimal('price', 8, 2);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

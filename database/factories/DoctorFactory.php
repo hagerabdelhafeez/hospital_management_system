@@ -22,13 +22,11 @@ class DoctorFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'appointments' => $this->faker->randomElement(['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'section_id' => Section::inRandomOrder()->first()->id,
             'password' => static::$password ??= Hash::make('password'),
             'phone' => $this->faker->phoneNumber(),
-            'price' => $this->faker->randomElement([100, 150, 200, 300, 400, 500]),
         ];
     }
 }
