@@ -11,4 +11,8 @@ return [
     'Close' => 'Close',
     'Warning' => 'Are Sure Of The Deleting Process ?',
     'description' => 'Description',
+    'edit_sections' => 'Edit Sections',
+    'name_sections' => 'Name Sections',
+    'section_doctors' => 'Section Doctors',
+    'submit' => 'Submit',
 ];

@@ -16,7 +16,7 @@ class DoctorRepository implements DoctorRepositoryInterface
 
     public function index()
     {
-        $doctors = Doctor::all();
+        $doctors = Doctor::with('doctorappointments')->get();
 
         return view('dashboard.doctors.index', compact('doctors'));
     }
@@ -43,7 +43,7 @@ class DoctorRepository implements DoctorRepositoryInterface
 
             // store trans
             $doctor->name = $request->name;
-            $doctor->appointments = implode(',', $request->appointments);
+            // $doctor->appointments = implode(',', $request->appointments);
             $doctor->save();
 
             // insert image
@@ -82,6 +82,87 @@ class DoctorRepository implements DoctorRepositoryInterface
             session()->flash('delete');
 
             return redirect()->route('doctors.index');
+        }
+    }
+
+    public function edit($id)
+    {
+        $doctor = Doctor::findOrFail($id);
+        $sections = Section::all();
+        $appointments = Appointment::all();
+
+        return view('dashboard.doctors.edit', compact('doctor', 'sections', 'appointments'));
+    }
+
+    public function update($request)
+    {
+        DB::beginTransaction();
+
+        try {
+            $doctor = Doctor::findorfail($request->id);
+
+            $doctor->email = $request->email;
+            $doctor->section_id = $request->section_id;
+            $doctor->phone = $request->phone;
+            $doctor->save();
+            // store trans
+            $doctor->name = $request->name;
+            $doctor->save();
+
+            // update pivot tABLE
+            $doctor->doctorappointments()->sync($request->appointments);
+
+            // update photo
+            if ($request->has('photo')) {
+                // Delete old photo
+                if ($doctor->image) {
+                    $old_img = $doctor->image->filename;
+                    $this->Delete_attachment('upload_image', 'doctors/'.$old_img, $request->id);
+                }
+                // Upload img
+                $this->verifyAndStoreImage($request, 'photo', 'doctors', 'upload_image', $request->id, 'App\Models\Doctor');
+            }
+
+            DB::commit();
+            session()->flash('edit');
+
+            return redirect()->route('doctors.index');
+        } catch (\Exception $e) {
+            DB::rollback();
+
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function update_password($request)
+    {
+        try {
+            $doctor = Doctor::findorfail($request->id);
+            $doctor->update([
+                'password' => Hash::make($request->password),
+            ]);
+
+            session()->flash('edit');
+
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    public function update_status($request)
+    {
+        try {
+            $doctor = Doctor::findorfail($request->id);
+            $doctor->update([
+                'status' => $request->status,
+            ]);
+
+            session()->flash('edit');
+
+            return redirect()->back();
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 }

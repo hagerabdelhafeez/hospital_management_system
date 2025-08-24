@@ -29,9 +29,10 @@ Route::group(
         // ################# End Admin Dashboard Routes ##################
 
         Route::middleware(['auth:admin'])->group(function () {
-
             Route::resource('sections', SectionController::class);
             Route::resource('doctors', DoctorController::class);
+            Route::post('update_password', [DoctorController::class, 'update_password'])->name('update_password');
+            Route::post('update_status', [DoctorController::class, 'update_status'])->name('update_status');
         });
 
         require __DIR__.'/auth.php';

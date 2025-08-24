@@ -34,4 +34,9 @@ class SectionController extends Controller
     {
         return $this->sections->destroy($request);
     }
+
+    public function show($id)
+    {
+        return $this->sections->show($id);
+    }
 }

@@ -77,7 +77,9 @@
                                         <td>{{ $doctor->email }}</td>
                                         <td>{{ $doctor->section->name }}</td>
                                         <td>{{ $doctor->phone }}</td>
-                                        <td>{{ $doctor->appointments }}</td>
+                                        <td>
+                                            {{ $doctor->doctorappointments->pluck('name')->join(', ') }}
+                                        </td>
                                         <td>
                                             <div
                                                 class="dot-label bg-{{ $doctor->status == 1 ? 'success' : 'danger' }} ml-1">
@@ -98,22 +100,23 @@
                                                             style="color: #0ba360"
                                                             class="text-success ti-user"></i>&nbsp;&nbsp;تعديل البيانات</a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#delete{{ $doctor->id }}"><i
+                                                        data-target="#update_password{{ $doctor->id }}"><i
                                                             class="text-primary ti-key"></i>&nbsp;&nbsp;تغير كلمة المرور</a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#delete{{ $doctor->id }}"><i
+                                                        data-target="#update_status{{ $doctor->id }}"><i
                                                             class="text-warning ti-back-right"></i>&nbsp;&nbsp;تغير
                                                         الحالة</a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                                         data-target="#delete{{ $doctor->id }}"><i
                                                             class="text-danger  ti-trash"></i>&nbsp;&nbsp;حذف البيانات</a>
-
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
                                     @include('dashboard.doctors.delete')
                                     @include('dashboard.doctors.delete_select')
+                                    @include('dashboard.doctors.update_password')
+                                    @include('dashboard.doctors.update_status')
                                 @endforeach
                             </tbody>
                         </table>

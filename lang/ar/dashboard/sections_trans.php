@@ -11,4 +11,8 @@ return [
     'Close' => 'اغلاق',
     'Warning' => 'هل انت متاكد من عملية الحذف ؟',
     'description' => 'الوصف',
+    'edit_sections' => 'تعديل قسم',
+    'name_sections' => 'اسم القسم',
+    'section_doctors' => 'اطباء القسم',
+    'submit' => 'تاكيد',
 ];
