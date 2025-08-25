@@ -43,8 +43,9 @@ class DoctorRepository implements DoctorRepositoryInterface
 
             // store trans
             $doctor->name = $request->name;
-            // $doctor->appointments = implode(',', $request->appointments);
             $doctor->save();
+
+            $doctor->doctorappointments()->attach($request->appointments);
 
             // insert image
             $this->verifyAndStoreImage($request, 'photo', 'doctors', 'upload_image', $doctor->id, Doctor::class);
