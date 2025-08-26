@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::get('/Dashboard_Admin', [DashboardController::class, 'index']);
@@ -33,6 +34,10 @@ Route::group(
             Route::post('update_password', [DoctorController::class, 'update_password'])->name('update_password');
             Route::post('update_status', [DoctorController::class, 'update_status'])->name('update_status');
             Route::resource('services', SingleServiceController::class);
+            Livewire::setUpdateRoute(function ($handle) {
+                return Route::post('/custom/livewire/update', $handle);
+            });
+            Route::view('add_group_services', 'livewire.GroupServices.include_create')->name('Add_GroupServices');
         });
 
         require __DIR__.'/auth.php';
