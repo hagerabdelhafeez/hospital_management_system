@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
@@ -36,6 +37,7 @@ Route::group(
             Route::post('update_status', [DoctorController::class, 'update_status'])->name('update_status');
             Route::resource('services', SingleServiceController::class);
             Route::resource('insurances', InsuranceController::class);
+            Route::resource('ambulances', AmbulanceController::class);
             Livewire::setUpdateRoute(function ($handle) {
                 return Route::post('/custom/livewire/update', $handle);
             });
