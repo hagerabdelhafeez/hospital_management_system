@@ -16,7 +16,7 @@ class DoctorSeeder extends Seeder
         Doctor::factory(30)->create();
         $appointments = Appointment::all();
         Doctor::all()->each(function ($doctor) use ($appointments) {
-            $doctor->appointments()->attach(
+            $doctor->doctorappointments()->attach(
                 $appointments->random(rand(1, 7))->pluck('id')->toArray()
             );
         });

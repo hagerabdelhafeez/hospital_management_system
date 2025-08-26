@@ -154,7 +154,7 @@ class CreateGroupServices extends Component
 
             // حفظ العلاقة
             foreach ($this->GroupsItems as $GroupsItem) {
-                $Groups->service_group()->attach($GroupsItem['service_id']);
+                $Groups->service_group()->attach($GroupsItem['service_id'], ['quantity' => $GroupsItem['quantity']]);
             }
 
             $this->reset('GroupsItems', 'name_group', 'notes');
@@ -185,7 +185,7 @@ class CreateGroupServices extends Component
         foreach ($group->service_group as $item) {
             $this->GroupsItems[] = [
                 'service_id' => $item->id,
-                'quantity' => 1,
+                'quantity' => $item->pivot->quantity,
                 'is_saved' => true,
                 'service_name' => $item->name,
                 'service_price' => $item->price,
