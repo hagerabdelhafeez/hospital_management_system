@@ -44,6 +44,7 @@ Route::group(
                 return Route::post('/custom/livewire/update', $handle);
             });
             Route::view('add_group_services', 'livewire.GroupServices.include_create')->name('Add_GroupServices');
+            Route::view('single_invoices', 'livewire.single_invoices.index')->name('single_invoices');
         });
 
         require __DIR__.'/auth.php';

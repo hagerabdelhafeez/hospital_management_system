@@ -67,7 +67,7 @@
                     <li><a class="slide-item" href="{{ route('doctors.index') }}">{{ trans('dashboard/main-sidebar_trans.view_all') }}</a></li>
                 </ul>
             </li>
-            <li class="side-item side-item-category">WEB APPS</li>
+            <li class="side-item side-item-category">General</li>
             <li class="slide">
                 <a class="side-menu__item" data-toggle="slide" href="{{ url('/' . $page='#') }}"><svg xmlns="http://www.w3.org/2000/svg" class="side-menu__icon" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M4 12c0 4.08 3.06 7.44 7 7.93V4.07C7.05 4.56 4 7.92 4 12z" opacity=".3"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.94-.49-7-3.85-7-7.93s3.05-7.44 7-7.93v15.86zm2-15.86c1.03.13 2 .45 2.87.93H13v-.93zM13 7h5.24c.25.31.48.65.68 1H13V7zm0 3h6.74c.08.33.15.66.19 1H13v-1zm0 9.93V19h2.87c-.87.48-1.84.8-2.87.93zM18.24 17H13v-1h5.92c-.2.35-.43.69-.68 1zm1.5-3H13v-1h6.93c-.04.34-.11.67-.19 1z"/></svg><span class="side-menu__label">{{trans('dashboard/main-sidebar_trans.Services')}}</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
@@ -89,24 +89,6 @@
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('patients.create') }}">اضافة مريض</a></li>
                     <li><a class="slide-item" href="{{ route('patients.index') }}">قائمة المرضى</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'breadcrumbs')) }}">Breadcrumbs</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'buttons')) }}">Buttons</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'badge')) }}">Badge</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'dropdown')) }}">Dropdown</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'thumbnails')) }}">Thumbnails</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'list-group')) }}">List Group</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'navigation')) }}">Navigation</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'images')) }}">Images</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'pagination')) }}">Pagination</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'popover')) }}">Popover</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'progress')) }}">Progress</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'spinners')) }}">Spinners</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'media-object')) }}">Media Object</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'typography')) }}">Typography</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'tooltip')) }}">Tooltip</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'toast')) }}">Toast</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'tags')) }}">Tags</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'tabs')) }}">Tabs</a></li>
                 </ul>
             </li>
             <li class="slide">
@@ -122,20 +104,10 @@
                         <circle cx="9.5" cy="7.5" r="1.5" />
                         <circle cx="14.5" cy="7.5" r="1.5" />
                         <circle cx="17.5" cy="11.5" r="1.5" />
-                    </svg><span class="side-menu__label">Advanced UI</span><i
+                    </svg><span class="side-menu__label">الفواتير</span><i
                         class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'accordion')) }}">Accordion</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'carousel')) }}">Carousel</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'collapse')) }}">Collapse</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'modals')) }}">Modals</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'timeline')) }}">Timeline</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'sweet-alert')) }}">Sweet Alert</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'rating')) }}">Ratings</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'counters')) }}">Counters</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'search')) }}">Search</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'userlist')) }}">Userlist</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'blog')) }}">Blog</a></li>
+                    <li><a class="slide-item" href="{{ route('single_invoices') }}">فاتورة خدمة مفردة</a></li>
                 </ul>
             </li>
             <li class="side-item side-item-category">COMPONENTS</li>
