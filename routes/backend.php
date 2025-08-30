@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
 use App\Http\Controllers\Dashboard\PatientController;
+use App\Http\Controllers\Dashboard\PaymentAccountController;
 use App\Http\Controllers\Dashboard\ReceiptAccountController;
 use App\Http\Controllers\Dashboard\SectionController;
 use App\Http\Controllers\Dashboard\SingleServiceController;
@@ -42,6 +43,7 @@ Route::group(
             Route::resource('ambulances', AmbulanceController::class);
             Route::resource('patients', PatientController::class);
             Route::resource('Receipt', ReceiptAccountController::class);
+            Route::resource('Payment', PaymentAccountController::class);
             Livewire::setUpdateRoute(function ($handle) {
                 return Route::post('/custom/livewire/update', $handle);
             });
