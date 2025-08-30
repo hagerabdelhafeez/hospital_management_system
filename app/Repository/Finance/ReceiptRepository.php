@@ -25,6 +25,13 @@ class ReceiptRepository implements ReceiptRepositoryInterface
         return view('dashboard.Receipt.add', compact('Patients'));
     }
 
+    public function show($id)
+    {
+        $receipt = ReceiptAccount::findorfail($id);
+
+        return view('dashboard.Receipt.print', compact('receipt'));
+    }
+
     public function store($request)
     {
         DB::beginTransaction();

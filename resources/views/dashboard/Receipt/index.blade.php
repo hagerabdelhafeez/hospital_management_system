@@ -69,6 +69,9 @@
                                             <a class="modal-effect btn btn-sm btn-danger" data-effect="effect-scale"
                                                 data-toggle="modal" href="#delete{{ $receipt->id }}"><i
                                                     class="las la-trash"></i></a>
+                                            <a href="{{ route('Receipt.show', $receipt->id) }}"
+                                                class="btn btn-primary btn-sm" target="_blank" title="طباعه سند قبض"><i
+                                                    class="fas fa-print"></i></a>
                                         </td>
                                     </tr>
                                     @include('dashboard.Receipt.delete')

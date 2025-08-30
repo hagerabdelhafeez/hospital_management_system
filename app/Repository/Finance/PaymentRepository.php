@@ -25,6 +25,13 @@ class PaymentRepository implements PaymentRepositoryInterface
         return view('dashboard.Payment.add', compact('Patients'));
     }
 
+    public function show($id)
+    {
+        $payment_account = PaymentAccount::findorfail($id);
+
+        return view('dashboard.Payment.print', compact('payment_account'));
+    }
+
     public function store($request)
     {
         DB::beginTransaction();
