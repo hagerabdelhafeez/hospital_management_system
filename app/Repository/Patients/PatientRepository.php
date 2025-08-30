@@ -4,6 +4,9 @@ namespace App\Repository\Patients;
 
 use App\Interfaces\Patients\PatientRepositoryInterface;
 use App\Models\Patient;
+use App\Models\PatientAccount;
+use App\Models\ReceiptAccount;
+use App\Models\SingleInvoice;
 use Illuminate\Support\Facades\Hash;
 
 class PatientRepository implements PatientRepositoryInterface
@@ -12,12 +15,26 @@ class PatientRepository implements PatientRepositoryInterface
     {
         $Patients = Patient::all();
 
-        return view('dashboard.Patients.index', compact('Patients'));
+        return view('dashboard.patients.index', compact('Patients'));
     }
 
     public function create()
     {
         return view('dashboard.patients.create');
+    }
+
+    public function Show($id)
+    {
+        $Patient = Patient::findorfail($id);
+        $invoices = SingleInvoice::where('patient_id', $id)->get();
+        $receipt_accounts = ReceiptAccount::where('patient_id', $id)->get();
+        $Patient_accounts = PatientAccount::orWhereNotNull('single_invoice_id')
+            ->orWhereNotNull('receipt_account_id')
+            ->orWhereNotNull('payment_account_id')
+            ->where('patient_id', $id)
+            ->get();
+
+        return view('dashboard.patients.show', compact('Patient', 'invoices', 'receipt_accounts', 'Patient_accounts'));
     }
 
     public function store($request)
