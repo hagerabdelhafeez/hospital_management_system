@@ -129,6 +129,7 @@
                     </svg><span class="side-menu__label">الفواتير</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('single_invoices') }}">فاتورة خدمة مفردة</a></li>
+                    <li><a class="slide-item" href="{{ route('group_invoices') }}">فاتورة مجموعة خدمات</a></li>
                 </ul>
             </li>
             <li class="slide">

@@ -50,6 +50,9 @@ Route::group(
             Route::view('add_group_services', 'livewire.GroupServices.include_create')->name('Add_GroupServices');
             Route::view('single_invoices', 'livewire.single_invoices.index')->name('single_invoices');
             Route::view('Print_single_invoices', 'livewire.single_invoices.print')->name('Print_single_invoices');
+
+            Route::view('group_invoices', 'livewire.Group_invoices.index')->name('group_invoices');
+            Route::view('group_Print_single_invoices', 'livewire.Group_invoices.print')->name('group_Print_single_invoices');
         });
 
         require __DIR__.'/auth.php';
