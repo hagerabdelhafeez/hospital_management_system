@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Doctor extends Model
+class Doctor extends Authenticatable
 {
     use Translatable;
     use HasFactory;
@@ -14,6 +14,18 @@ class Doctor extends Model
     protected $fillable = ['name', 'email', 'email_verified_at', 'password', 'phone', 'section_id', 'status'];
 
     public $translatedAttributes = ['name', 'appointments'];
+
+    protected $hidden = [
+        'password',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'email_verified_at' => 'datetime',
+            'password' => 'hashed',
+        ];
+    }
 
     public function image()
     {

@@ -48,12 +48,12 @@
                             @endif
                         </a>
                         <div class="dropdown-menu dropdown-menu-left dropdown-menu-arrow" x-placement="bottom-end">
-                            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                 <a class="dropdown-item" rel="alternate" hreflang="{{ $localeCode }}"
-                                   href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                    @if($properties['native'] == "English")
+                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    @if ($properties['native'] == 'English')
                                         <i class="flag-icon flag-icon-us"></i>
-                                    @elseif($properties['native'] == "العربية")
+                                    @elseif($properties['native'] == 'العربية')
                                         <i class="flag-icon flag-icon-eg"></i>
                                     @endif
                                     {{ $properties['native'] }}
@@ -305,8 +305,10 @@
                         <!-- Authentication -->
                         @if (auth('web')->check())
                             <form method="POST" action="{{ route('logout.user') }}">
-                            @else
-                                <form method="POST" action="{{ route('logout.admin') }}">
+                            @elseif(auth('doctor')->check())
+                                <form method="POST" action="{{ route('logout.doctor') }}">
+                                @else
+                                    <form method="POST" action="{{ route('logout.admin') }}">
                         @endif
 
                         @csrf
