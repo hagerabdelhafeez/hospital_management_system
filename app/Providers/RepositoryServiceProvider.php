@@ -19,6 +19,9 @@ use App\Repository\Patients\PatientRepository;
 use App\Repository\Sections\SectionRepository;
 use App\Repository\Service\SingleServiceRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Interfaces\DoctorDashboard\InvoicesRepositoryInterface;
+use App\Repository\DoctorDashboard\InvoicesRepository;
+
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -35,6 +38,8 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(PatientRepositoryInterface::class, PatientRepository::class);
         $this->app->bind(ReceiptRepositoryInterface::class, ReceiptRepository::class);
         $this->app->bind(PaymentRepositoryInterface::class, PaymentRepository::class);
+        // Doctor Dashboard
+        $this->app->bind(InvoicesRepositoryInterface::class, InvoicesRepository::class);
     }
 
     /**

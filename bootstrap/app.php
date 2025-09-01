@@ -13,6 +13,9 @@ return Application::configure(basePath: dirname(__DIR__))
         then: function () {
             Route::middleware('web')
             ->group(__DIR__.'/../routes/backend.php');
+
+            Route::middleware('web')
+            ->group(__DIR__.'/../routes/doctor.php');
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
