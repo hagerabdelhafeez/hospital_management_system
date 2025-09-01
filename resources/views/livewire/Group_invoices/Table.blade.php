@@ -22,11 +22,11 @@
         @foreach ($group_invoices as $group_invoice)
             <tr>
                 <td>{{ $loop->iteration}}</td>
-                <td>{{ $group_invoice->Group->name }}</td>
-                <td>{{ $group_invoice->Patient->name }}</td>
+                <td>{{ $group_invoice->group->name }}</td>
+                <td>{{ $group_invoice->patient->name }}</td>
                 <td>{{ $group_invoice->invoice_date }}</td>
-                <td>{{ $group_invoice->Doctor->name }}</td>
-                <td>{{ $group_invoice->Section->name }}</td>
+                <td>{{ $group_invoice->doctor->name }}</td>
+                <td>{{ $group_invoice->section->name }}</td>
                 <td>{{ number_format($group_invoice->price, 2) }}</td>
                 <td>{{ number_format($group_invoice->discount_value, 2) }}</td>
                 <td>{{ $group_invoice->tax_rate }}%</td>

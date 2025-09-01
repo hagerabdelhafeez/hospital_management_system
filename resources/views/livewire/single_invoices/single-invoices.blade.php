@@ -1,5 +1,12 @@
 <div>
 
+    @if ($catchError)
+        <div class="alert alert-danger" id="success-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{ $catchError }}
+        </div>
+    @endif
+
     @if ($InvoiceSaved)
         <div class="alert alert-info">تم حفظ البيانات بنجاح.</div>
     @endif
@@ -92,9 +99,11 @@
                                             </td>
                                             <td><input wire:model="price" type="text" class="form-control" readonly>
                                             </td>
-                                            <td><input wire:model.live="discount_value" type="text" class="form-control">
+                                            <td><input wire:model.live="discount_value" type="text"
+                                                    class="form-control">
                                             </td>
-                                            <th><input wire:model.live="tax_rate" type="text" class="form-control"></th>
+                                            <th><input wire:model.live="tax_rate" type="text" class="form-control">
+                                            </th>
                                             <td><input type="text" class="form-control" value="{{ $tax_value }}"
                                                     readonly></td>
                                             <td><input type="text" class="form-control" readonly
