@@ -1,11 +1,10 @@
 <?php
 
-use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Doctor\InvoiceController;
+use App\Http\Controllers\DoctorDashboard\DiagnosticController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-
 
 Route::group(
     [
@@ -21,6 +20,7 @@ Route::group(
                 return Route::post('/custom/livewire/update', $handle);
             });
             Route::resource('invoices', InvoiceController::class);
+            Route::resource('diagnostics', DiagnosticController::class);
         });
 
         require __DIR__.'/auth.php';
