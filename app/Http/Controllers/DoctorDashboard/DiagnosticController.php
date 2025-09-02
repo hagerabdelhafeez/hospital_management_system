@@ -38,6 +38,11 @@ class DiagnosticController extends Controller
     {
     }
 
+    public function addReview(Request $request)
+    {
+        return $this->diagnosis->addReview($request);
+    }
+
     public function destroy($id)
     {
     }

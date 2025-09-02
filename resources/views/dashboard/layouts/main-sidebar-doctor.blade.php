@@ -21,7 +21,7 @@
                         src="{{ URL::asset('dashboard/img/faces/6.jpg') }}"><span
                         class="avatar-status profile-status bg-green"></span>
                 </div>
-               <div class="user-info">
+                <div class="user-info">
                     <h4 class="font-weight-semibold mt-3 mb-0">{{ Auth::user()->name }}</h4>
                     <span class="mb-0 text-muted">{{ Auth::user()->email }}</span>
                 </div>
@@ -40,11 +40,8 @@
                     </svg><span class="side-menu__label">الكشوفات</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('invoices.index') }}">قائمة الكشوفات</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'chart-flot')) }}">Flot Charts</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'chart-chartjs')) }}">ChartJS</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'chart-echart')) }}">Echart</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'chart-sparkline')) }}">Sparkline</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'chart-peity')) }}">Chart-peity</a></li>
+                    <li><a class="slide-item" href="{{ route('completedInvoices') }}">قائمة الكشوفات المكتملة</a></li>
+                    <li><a class="slide-item" href="{{ route('reviewInvoices') }}">قائمة المراجعات</a></li>
                 </ul>
             </li>
             <li class="slide">
@@ -75,7 +72,8 @@
                     </svg><span class="side-menu__label">Apps</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'cards')) }}">Cards</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'darggablecards')) }}">Darggablecards</a></li>
+                    <li><a class="slide-item" href="{{ url('/' . ($page = 'darggablecards')) }}">Darggablecards</a>
+                    </li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'rangeslider')) }}">Range-slider</a></li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'calendar')) }}">Calendar</a></li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'contacts')) }}">Contacts</a></li>
@@ -159,7 +157,8 @@
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'mail')) }}">Mail</a></li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'mail-compose')) }}">Mail Compose</a></li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'mail-read')) }}">Read-mail</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'mail-settings')) }}">mail-settings</a></li>
+                    <li><a class="slide-item" href="{{ url('/' . ($page = 'mail-settings')) }}">mail-settings</a>
+                    </li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'chat')) }}">Chat</a></li>
                 </ul>
             </li>
@@ -172,8 +171,10 @@
                             d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z" />
                     </svg><span class="side-menu__label">Forms</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-elements')) }}">Form Elements</a></li>
-                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-advanced')) }}">Advanced Forms</a></li>
+                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-elements')) }}">Form Elements</a>
+                    </li>
+                    <li><a class="slide-item" href="{{ url('/' . ($page = 'form-advanced')) }}">Advanced Forms</a>
+                    </li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'form-layouts')) }}">Form Layouts</a></li>
                     <li><a class="slide-item" href="{{ url('/' . ($page = 'form-validation')) }}">Form Validation</a>
                     </li>

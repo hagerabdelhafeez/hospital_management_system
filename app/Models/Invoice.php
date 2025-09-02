@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Invoice extends Model
 {
+    protected $guarded = [];
+
     public function group()
     {
         return $this->belongsTo(Group::class, 'group_id');

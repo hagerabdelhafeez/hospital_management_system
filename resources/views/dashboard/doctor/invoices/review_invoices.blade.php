@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.master-doctor')
 @section('title')
-    الكشوفات
+    المراجعات
 @stop
 @section('css')
     <!-- Internal Data table css -->
@@ -22,7 +22,7 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">الكشوفات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                <h4 class="content-title mb-0 my-auto">المراجعات</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
                     الفواتير</span>
             </div>
         </div>
@@ -51,6 +51,7 @@
                                     <th>قيمة الضريبة</th>
                                     <th>الاجمالي مع الضريبة</th>
                                     <th>حالة الفاتورة</th>
+                                    <th>تاريخ المراجعة</th>
                                     <th>العمليات</th>
                                 </tr>
                             </thead>
@@ -59,7 +60,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $invoice->invoice_date }}</td>
-                                        <td>{{ $invoice->service->name ?? $invoice->group->name }}</td>
+                                        <td>{{ $invoice->Service->name ?? $invoice->Group->name }}</td>
                                         <td><a
                                                 href="{{ route('diagnostics.show', $invoice->patient_id) }}">{{ $invoice->Patient->name }}</a>
                                         </td>
@@ -78,8 +79,9 @@
                                             @endif
                                         </td>
 
+                                        <td>{{ \App\Models\Diagnostic::where(['invoice_id' => $invoice->id])->first()->review_date }}
+                                        </td>
                                         <td>
-
                                             <div class="dropdown">
                                                 <button aria-expanded="false" aria-haspopup="true"
                                                     class="btn ripple btn-outline-primary btn-sm" data-toggle="dropdown"
@@ -90,9 +92,8 @@
                                                         data-target="#add_diagnosis{{ $invoice->id }}"><i
                                                             class="text-primary fa fa-stethoscope"></i>&nbsp;&nbsp;اضافة
                                                         تشخيص </a>
-                                                    <a class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#add_review{{ $invoice->id }}"><i
-                                                            class="text-warning far fa-file-alt"></i>&nbsp;&nbsp;اضافة
+                                                    <a class="dropdown-item" href="#"><i
+                                                            class="text-warning far fa-file-alt"></i>&nbsp;&nbsp; اضافة
                                                         مراجعة </a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                                         data-target="#update_password"><i
@@ -110,7 +111,6 @@
                                         </td>
                                     </tr>
                                     @include('dashboard.doctor.invoices.add_diagnosis')
-                                    @include('dashboard.doctor.invoices.add_review')
                                 @endforeach
                             </tbody>
                         </table>
@@ -154,11 +154,5 @@
     <script src="{{ URL::asset('dashboard/plugins/pickerjs/picker.min.js') }}"></script>
     <!-- Internal form-elements js -->
     <script src="{{ URL::asset('dashboard/js/form-elements.js') }}"></script>
-
-     <script>
-        $('#review_date').datetimepicker({
-
-        })
-    </script>
 
 @endsection
