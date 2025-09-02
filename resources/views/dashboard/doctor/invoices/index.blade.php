@@ -61,7 +61,7 @@
                                         <td>{{ $invoice->invoice_date }}</td>
                                         <td>{{ $invoice->service->name ?? $invoice->group->name }}</td>
                                         <td><a
-                                                href="{{ route('diagnostics.show', $invoice->patient_id) }}">{{ $invoice->Patient->name }}</a>
+                                                href="{{ route('patient_details', $invoice->patient_id) }}">{{ $invoice->Patient->name }}</a>
                                         </td>
                                         <td>{{ number_format($invoice->price, 2) }}</td>
                                         <td>{{ number_format($invoice->discount_value, 2) }}</td>
@@ -95,9 +95,9 @@
                                                             class="text-warning far fa-file-alt"></i>&nbsp;&nbsp;اضافة
                                                         مراجعة </a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#update_password"><i
+                                                        data-target="#xray_conversion{{ $invoice->id }}"><i
                                                             class="text-primary fas fa-x-ray"></i>&nbsp;&nbsp;تحويل الي
-                                                        الاشعة</a>
+                                                        الاشعة </a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                                         data-target="#update_status"><i
                                                             class="text-warning fas fa-syringe"></i>&nbsp;&nbsp;تحويل الي
@@ -111,6 +111,7 @@
                                     </tr>
                                     @include('dashboard.doctor.invoices.add_diagnosis')
                                     @include('dashboard.doctor.invoices.add_review')
+                                    @include('dashboard.doctor.invoices.xray_conversion')
                                 @endforeach
                             </tbody>
                         </table>
@@ -155,7 +156,7 @@
     <!-- Internal form-elements js -->
     <script src="{{ URL::asset('dashboard/js/form-elements.js') }}"></script>
 
-     <script>
+    <script>
         $('#review_date').datetimepicker({
 
         })

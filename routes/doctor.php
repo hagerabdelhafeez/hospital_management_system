@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Doctor\InvoiceController;
 use App\Http\Controllers\DoctorDashboard\DiagnosticController;
+use App\Http\Controllers\DoctorDashboard\RayController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorDashboard\PatientDetailsController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
@@ -20,6 +22,8 @@ Route::group(
             Route::resource('invoices', InvoiceController::class);
             Route::post('add_review', [DiagnosticController::class, 'addReview'])->name('add_review');
             Route::resource('diagnostics', DiagnosticController::class);
+            Route::resource('rays', RayController::class);
+            Route::get('patient_details/{id}', [PatientDetailsController::class, 'index'])->name('patient_details');
         });
 
         require __DIR__.'/auth.php';
