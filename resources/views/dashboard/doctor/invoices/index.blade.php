@@ -99,9 +99,9 @@
                                                             class="text-primary fas fa-x-ray"></i>&nbsp;&nbsp;تحويل الي
                                                         الاشعة </a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                                        data-target="#update_status"><i
+                                                        data-target="#laboratorie_conversion{{ $invoice->id }}"><i
                                                             class="text-warning fas fa-syringe"></i>&nbsp;&nbsp;تحويل الي
-                                                        المختبر</a>
+                                                        المختبر </a>
                                                     <a class="dropdown-item" href="#" data-toggle="modal"
                                                         data-target="#delete"><i
                                                             class="text-danger  ti-trash"></i>&nbsp;&nbsp;حذف البيانات</a>
@@ -112,6 +112,7 @@
                                     @include('dashboard.doctor.invoices.add_diagnosis')
                                     @include('dashboard.doctor.invoices.add_review')
                                     @include('dashboard.doctor.invoices.xray_conversion')
+                                    @include('dashboard.doctor.invoices.Laboratorie_conversion')
                                 @endforeach
                             </tbody>
                         </table>

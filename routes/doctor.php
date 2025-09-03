@@ -2,10 +2,11 @@
 
 use App\Http\Controllers\Doctor\InvoiceController;
 use App\Http\Controllers\DoctorDashboard\DiagnosticController;
+use App\Http\Controllers\DoctorDashboard\PatientDetailsController;
 use App\Http\Controllers\DoctorDashboard\RayController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DoctorDashboard\PatientDetailsController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
+use App\Http\Controllers\DoctorDashboard\LaboratorieController;
 
 Route::group(
     [
@@ -23,6 +24,7 @@ Route::group(
             Route::post('add_review', [DiagnosticController::class, 'addReview'])->name('add_review');
             Route::resource('diagnostics', DiagnosticController::class);
             Route::resource('rays', RayController::class);
+            Route::resource('Laboratories', LaboratorieController::class);
             Route::get('patient_details/{id}', [PatientDetailsController::class, 'index'])->name('patient_details');
         });
 
