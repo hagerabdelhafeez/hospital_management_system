@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RayEmployeeDashboard\InvoiceController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -12,8 +13,9 @@ Route::group(
             return view('dashboard.dashboard_ray_employee.dashboard');
         })->middleware(['auth:ray_employee'])->name('dashboard.ray_employee');
 
-        Route::middleware(['auth:ray_employee'])->prefix('ray_employee')->group(function () {
-        });
+        // Route::middleware(['auth:ray_employee'])->prefix('ray_employee')->group(function () {
+        Route::get('invoices', [InvoiceController::class, 'index'])->name('invoices_ray.index');
+        // });
 
         require __DIR__.'/auth.php';
     });
