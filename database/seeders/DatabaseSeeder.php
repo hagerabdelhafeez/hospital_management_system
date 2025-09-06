@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             SectionSeeder::class,
             DoctorSeeder::class,
             ImageSeeder::class,
+            ServicesSeeder::class,
+            patientssSeeder::class,
+            RayEmployeesSeeder::class,
         ]);
 
         // User::factory(10)->create();

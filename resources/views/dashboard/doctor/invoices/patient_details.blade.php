@@ -90,6 +90,8 @@
                                                             <th>#</th>
                                                             <th>اسم الخدمه</th>
                                                             <th>اسم الدكتور</th>
+                                                            <th>اسم موظف الأشعة</th>
+                                                            <th>حالة الكشف</th>
                                                             <th>العمليات</th>
                                                         </tr>
                                                     </thead>
@@ -99,17 +101,24 @@
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td>{{ $patient_ray->description }}</td>
                                                                 <td>{{ $patient_ray->doctor->name }}</td>
+                                                                <td>{{ $patient_ray->employee->name ?? 'No Employee' }}</td>
+                                                                <td>{{ $patient_ray->case == 0 ? 'غير مكتملة' : 'مكتملة' }}
+                                                                </td>
                                                                 @if ($patient_ray->doctor_id == auth()->user()->id)
-                                                                    <td>
-                                                                        <a class="modal-effect btn btn-sm btn-primary"
-                                                                            data-effect="effect-scale" data-toggle="modal"
-                                                                            href="#edit_xray_conversion{{ $patient_ray->id }}"><i
-                                                                                class="fas fa-edit"></i></a>
-                                                                        <a class="modal-effect btn btn-sm btn-danger"
-                                                                            data-effect="effect-scale" data-toggle="modal"
-                                                                            href="#delete{{ $patient_ray->id }}"><i
-                                                                                class="las la-trash"></i></a>
-                                                                    </td>
+                                                                    @if ($patient_ray->case == 0)
+                                                                        <td>
+                                                                            <a class="modal-effect btn btn-sm btn-primary"
+                                                                                data-effect="effect-scale"
+                                                                                data-toggle="modal"
+                                                                                href="#edit_xray_conversion{{ $patient_ray->id }}"><i
+                                                                                    class="fas fa-edit"></i></a>
+                                                                            <a class="modal-effect btn btn-sm btn-danger"
+                                                                                data-effect="effect-scale"
+                                                                                data-toggle="modal"
+                                                                                href="#delete{{ $patient_ray->id }}"><i
+                                                                                    class="las la-trash"></i></a>
+                                                                        </td>
+                                                                    @endif
                                                                 @endif
                                                             </tr>
                                                             @include('dashboard.doctor.invoices.edit_xray_conversion')
