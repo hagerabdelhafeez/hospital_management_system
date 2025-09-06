@@ -13,9 +13,16 @@ class RayInvoicesRepository implements RayInvoicesRepositoryInterface
 
     public function index()
     {
-        $invoices = Ray::all();
+        $invoices = Ray::where('case', 0)->get();
 
         return view('dashboard.dashboard_ray_employee.invoices.index', compact('invoices'));
+    }
+
+    public function completedInvoices()
+    {
+        $invoices = Ray::where('case', 1)->get();
+
+        return view('dashboard.dashboard_ray_employee.invoices.completed_invoices', compact('invoices'));
     }
 
     public function edit($id)
@@ -35,8 +42,12 @@ class RayInvoicesRepository implements RayInvoicesRepositoryInterface
             'case' => 1,
         ]);
 
-        // Upload img
-        $this->verifyAndStoreImage($request, 'photo', 'Rays', 'upload_image', Auth::user()->id, 'App\Models\Ray');
+        // Upload images
+        if ($request->hasFile('photos')) {
+            foreach ($request->file('photos') as $varforeach) {
+                $this->verifyAndStoreImageForeach($varforeach, 'Rays', 'upload_image', Auth::user()->id, 'App\Models\Ray');
+            }
+        }
 
         session()->flash('edit');
 
