@@ -13,9 +13,9 @@ Route::group(
             return view('dashboard.dashboard_ray_employee.dashboard');
         })->middleware(['auth:ray_employee'])->name('dashboard.ray_employee');
 
-        // Route::middleware(['auth:ray_employee'])->prefix('ray_employee')->group(function () {
-        Route::get('invoices', [InvoiceController::class, 'index'])->name('invoices_ray.index');
-        // });
+        Route::middleware(['auth:ray_employee'])->group(function () {
+            Route::resource('invoices_ray_employee', InvoiceController::class);
+        });
 
         require __DIR__.'/auth.php';
     });

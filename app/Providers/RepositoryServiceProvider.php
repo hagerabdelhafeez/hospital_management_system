@@ -13,6 +13,7 @@ use App\Interfaces\Finance\ReceiptRepositoryInterface;
 use App\Interfaces\Insurances\InsuranceRepositoryInterface;
 use App\Interfaces\Patients\PatientRepositoryInterface;
 use App\Interfaces\RayEmployee\RayEmployeeRepositoryInterface;
+use App\Interfaces\RayEmployeeDashboard\RayInvoicesRepositoryInterface;
 use App\Interfaces\Sections\SectionRepositoryInterface;
 use App\Interfaces\Service\SingleServiceRepositoryInterface;
 use App\Repository\Ambulances\AmbulanceRepository;
@@ -26,6 +27,7 @@ use App\Repository\Finance\ReceiptRepository;
 use App\Repository\Insurances\InsuranceRepository;
 use App\Repository\Patients\PatientRepository;
 use App\Repository\RayEmployee\RayEmployeeRepository;
+use App\Repository\RayEmployeeDashboard\RayInvoicesRepository;
 use App\Repository\Sections\SectionRepository;
 use App\Repository\Service\SingleServiceRepository;
 use Illuminate\Support\ServiceProvider;
@@ -52,6 +54,9 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(DiagnosisRepositoryInterface::class, DiagnosisRepository::class);
         $this->app->bind(RaysRepositoryInterface::class, RaysRepository::class);
         $this->app->bind(LaboratoriesRepositoryInterface::class, LaboratoriesRepository::class);
+
+        // Ray Employee Dashboard
+        $this->app->bind(RayInvoicesRepositoryInterface::class, RayInvoicesRepository::class);
     }
 
     /**
