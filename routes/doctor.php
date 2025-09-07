@@ -18,7 +18,7 @@ Route::group(
         })->middleware(['auth:doctor'])->name('dashboard.doctor');
 
         Route::middleware(['auth:doctor'])->prefix('doctor')->group(function () {
-            Route::get('completed_invoices', [InvoiceController::class, 'completedInvoices'])->name('completedInvoices');
+            Route::get('completed_invoices', [InvoiceController::class, 'completedInvoices'])->name('completed_Invoices');
             Route::get('review_invoices', [InvoiceController::class, 'reviewInvoices'])->name('reviewInvoices');
             Route::resource('invoices', InvoiceController::class);
             Route::post('add_review', [DiagnosticController::class, 'addReview'])->name('add_review');
