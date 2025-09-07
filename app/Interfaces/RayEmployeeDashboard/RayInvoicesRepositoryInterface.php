@@ -11,4 +11,6 @@ interface RayInvoicesRepositoryInterface
     public function edit($id);
 
     public function update($request, $id);
+
+    public function viewRays($id);
 }

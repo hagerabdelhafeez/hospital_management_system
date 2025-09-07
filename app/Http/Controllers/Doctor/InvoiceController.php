@@ -25,4 +25,9 @@ class InvoiceController extends Controller
     {
         return $this->invoice->completedInvoices();
     }
+
+    public function show($id)
+    {
+        return $this->invoice->show($id);
+    }
 }

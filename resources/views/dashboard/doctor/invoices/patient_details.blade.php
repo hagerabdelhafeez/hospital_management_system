@@ -118,6 +118,12 @@
                                                                                 href="#delete{{ $patient_ray->id }}"><i
                                                                                     class="las la-trash"></i></a>
                                                                         </td>
+                                                                    @else
+                                                                        <td>
+                                                                            <a class="modal-effect btn btn-sm btn-warning"
+                                                                                href="{{ route('invoices.show', $patient_ray->id) }}"><i
+                                                                                    class="fas fa-binoculars"></i></a>
+                                                                        </td>
                                                                     @endif
                                                                 @endif
                                                             </tr>

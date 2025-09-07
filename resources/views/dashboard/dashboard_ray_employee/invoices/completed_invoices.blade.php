@@ -44,7 +44,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration}}</td>
                                     <td>{{ $invoice->created_at }}</td>
-                                    <td>{{ $invoice->patient->name }}</td>
+                                    <td><a href="{{route('view_rays',$invoice->id)}}">{{ $invoice->patient->name }}</a></td>
                                     <td>{{ $invoice->doctor->name }}</td>
                                     <td>{{ $invoice->description }}</td>
                                     <td>

@@ -32,6 +32,11 @@ class InvoiceController extends Controller
         return $this->Ray_Employee->update($request, $id);
     }
 
+    public function viewRays($id)
+    {
+        return $this->Ray_Employee->viewRays($id);
+    }
+
     public function destroy($id)
     {
     }

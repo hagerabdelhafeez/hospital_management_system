@@ -9,4 +9,6 @@ interface InvoicesRepositoryInterface
     public function reviewInvoices();
 
     public function completedInvoices();
+
+    public function show($id);
 }

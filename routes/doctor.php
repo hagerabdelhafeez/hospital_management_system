@@ -2,11 +2,11 @@
 
 use App\Http\Controllers\Doctor\InvoiceController;
 use App\Http\Controllers\DoctorDashboard\DiagnosticController;
+use App\Http\Controllers\DoctorDashboard\LaboratorieController;
 use App\Http\Controllers\DoctorDashboard\PatientDetailsController;
 use App\Http\Controllers\DoctorDashboard\RayController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
-use App\Http\Controllers\DoctorDashboard\LaboratorieController;
 
 Route::group(
     [
@@ -27,6 +27,10 @@ Route::group(
             Route::resource('Laboratories', LaboratorieController::class);
             Route::get('patient_details/{id}', [PatientDetailsController::class, 'index'])->name('patient_details');
         });
+
+        Route::get('/404', function () {
+            return view('dashboard.404');
+        })->name('404');
 
         require __DIR__.'/auth.php';
     });
