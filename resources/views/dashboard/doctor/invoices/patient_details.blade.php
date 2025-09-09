@@ -90,7 +90,7 @@
                                                             <th>#</th>
                                                             <th>اسم الخدمه</th>
                                                             <th>اسم الدكتور</th>
-                                                            <th>اسم موظف الأشعة</th>
+                                                            <th>اسم موظف الاشعة</th>
                                                             <th>حالة الكشف</th>
                                                             <th>العمليات</th>
                                                         </tr>
@@ -101,9 +101,18 @@
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td>{{ $patient_ray->description }}</td>
                                                                 <td>{{ $patient_ray->doctor->name }}</td>
-                                                                <td>{{ $patient_ray->employee->name ?? 'No Employee' }}</td>
-                                                                <td>{{ $patient_ray->case == 0 ? 'غير مكتملة' : 'مكتملة' }}
-                                                                </td>
+                                                                {{--                                                        <td>{{$patient_ray->employee_id !==null ? $patient_ray->employee->name:'NOEmployee'}}</td> --}}
+                                                                {{--                                                         <td>{{$patient_ray->employee->name ?? 'noEmployee'}}</td> --}}
+                                                                <td>{{ $patient_ray->employee->name }}</td>
+
+
+                                                                @if ($patient_ray->case == 0)
+                                                                    <td class="text-danger">غير مكتملة</td>
+                                                                @else
+                                                                    <td class="text-success"> مكتملة</td>
+                                                                @endif
+
+
                                                                 @if ($patient_ray->doctor_id == auth()->user()->id)
                                                                     @if ($patient_ray->case == 0)
                                                                         <td>
@@ -158,18 +167,30 @@
                                                                 <td>{{ $loop->iteration }}</td>
                                                                 <td>{{ $patient_Laboratorie->description }}</td>
                                                                 <td>{{ $patient_Laboratorie->doctor->name }}</td>
+
                                                                 @if ($patient_Laboratorie->doctor_id == auth()->user()->id)
-                                                                    <td>
-                                                                        <a class="modal-effect btn btn-sm btn-primary"
-                                                                            data-effect="effect-scale" data-toggle="modal"
-                                                                            href="#edit_laboratorie_conversion{{ $patient_Laboratorie->id }}"><i
-                                                                                class="fas fa-edit"></i></a>
-                                                                        <a class="modal-effect btn btn-sm btn-danger"
-                                                                            data-effect="effect-scale" data-toggle="modal"
-                                                                            href="#deleted_laboratorie{{ $patient_Laboratorie->id }}"><i
-                                                                                class="las la-trash"></i></a>
-                                                                    </td>
+                                                                    @if ($patient_Laboratorie->case == 0)
+                                                                        <td>
+                                                                            <a class="modal-effect btn btn-sm btn-primary"
+                                                                                data-effect="effect-scale"
+                                                                                data-toggle="modal"
+                                                                                href="#edit_xray_conversion{{ $patient_Laboratorie->id }}"><i
+                                                                                    class="fas fa-edit"></i></a>
+                                                                            <a class="modal-effect btn btn-sm btn-danger"
+                                                                                data-effect="effect-scale"
+                                                                                data-toggle="modal"
+                                                                                href="#delete{{ $patient_Laboratorie->id }}"><i
+                                                                                    class="las la-trash"></i></a>
+                                                                        </td>
+                                                                    @else
+                                                                        <td>
+                                                                            <a class="modal-effect btn btn-sm btn-warning"
+                                                                                href="{{ route('show.laboratorie', $patient_Laboratorie->id) }}"><i
+                                                                                    class="fas fa-binoculars"></i></a>
+                                                                        </td>
+                                                                    @endif
                                                                 @endif
+
                                                             </tr>
                                                             @include('dashboard.doctor.invoices.edit_laboratorie_conversion')
                                                             @include('dashboard.doctor.invoices.deleted_laboratorie')

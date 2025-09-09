@@ -27,12 +27,14 @@ use App\Repository\Finance\PaymentRepository;
 use App\Repository\Finance\ReceiptRepository;
 use App\Repository\Insurances\InsuranceRepository;
 use App\Repository\LaboratorieEmployee\LaboratorieEmployeeRepository;
+use App\Repository\LaboratorieEmployeeDashboard\LaboratorieEmployeeInvoicesRepository;
 use App\Repository\Patients\PatientRepository;
 use App\Repository\RayEmployee\RayEmployeeRepository;
 use App\Repository\RayEmployeeDashboard\RayInvoicesRepository;
 use App\Repository\Sections\SectionRepository;
 use App\Repository\Service\SingleServiceRepository;
 use Illuminate\Support\ServiceProvider;
+use App\Interfaces\LaboratorieEmployeeDashboard\LaboratorieEmployeeInvoicesInterface;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -61,6 +63,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(RayInvoicesRepositoryInterface::class, RayInvoicesRepository::class);
         // Laboratorie Employee Dashboard
         $this->app->bind(LaboratorieEmployeeRepositoryInterface::class, LaboratorieEmployeeRepository::class);
+        $this->app->bind(LaboratorieEmployeeInvoicesInterface::class, LaboratorieEmployeeInvoicesRepository::class);
     }
 
     /**

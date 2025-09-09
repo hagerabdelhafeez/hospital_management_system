@@ -30,4 +30,9 @@ class InvoiceController extends Controller
     {
         return $this->invoice->show($id);
     }
+
+    public function showLaboratorie($id)
+    {
+        return $this->invoice->showLaboratorie($id);
+    }
 }

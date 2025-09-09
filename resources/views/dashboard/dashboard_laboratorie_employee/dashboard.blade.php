@@ -11,7 +11,7 @@
         <div class="left-content">
             <div>
                 <h2 class="main-content-title tx-24 mg-b-1 mg-b-lg-1">لوحة تحكم موظفي المختبر</h2><br>
-                <p class="mg-b-0"> مرحبا بعودتك مرة اخرى {{ Auth::user()->name }}</p>
+                <p class="mg-b-0">مرحبا بعودتك مرة اخري {{ auth()->user()->name }}</p>
             </div>
         </div>
     </div>
@@ -29,7 +29,8 @@
                     <div class="pb-0 mt-0">
                         <div class="d-flex">
                             <div class="">
-                                <h4 class="tx-20 font-weight-bold mb-1 text-white">{{ App\models\Ray::count() }}</h4>
+                                <h4 class="tx-20 font-weight-bold mb-1 text-white">{{ App\Models\Laboratorie::count() }}
+                                </h4>
                             </div>
                         </div>
                     </div>
@@ -47,7 +48,7 @@
                         <div class="d-flex">
                             <div class="">
                                 <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                    {{ App\models\Ray::where('case', 0)->count() }}</h4>
+                                    {{ App\Models\Laboratorie::where('case', 0)->count() }}</h4>
                             </div>
                         </div>
                     </div>
@@ -65,7 +66,7 @@
                         <div class="d-flex">
                             <div class="">
                                 <h4 class="tx-20 font-weight-bold mb-1 text-white">
-                                    {{ App\models\Ray::where('case', 1)->count() }}</h4>
+                                    {{ App\Models\Laboratorie::where('case', 1)->count() }}</h4>
                             </div>
                         </div>
                     </div>
@@ -73,10 +74,10 @@
                 <span id="compositeline3" class="pt-1">5,10,5,20,22,12,15,18,20,15,8,12,22,5,10,12,22,15,16,10</span>
             </div>
         </div>
+
     </div>
     <!-- row closed -->
 
-    <!-- row opened -->
     <div class="row row-sm row-deck">
         <div class="col-md-12 col-lg-12 col-xl-12">
             <div class="card card-table-two">
@@ -96,7 +97,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse(\App\Models\Ray::latest()->take(5)->get() as $invoice)
+                            @forelse(\App\Models\Laboratorie::latest()->take(5)->get() as $invoice)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td class="tx-right tx-medium tx-inverse">{{ $invoice->created_at }}</td>
@@ -120,7 +121,6 @@
             </div>
         </div>
     </div>
-
     <!-- /row -->
     </div>
     </div>
