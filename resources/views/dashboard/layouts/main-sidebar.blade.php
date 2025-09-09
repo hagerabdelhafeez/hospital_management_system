@@ -27,5 +27,9 @@
         @include('dashboard.layouts.main-sidebar.ray_employee-main-sidebar')
     @endif
 
+    @if(Auth::guard('laboratorie_employee')->check())
+        @include('dashboard.layouts.main-sidebar.laboratorie_employee-main-sidebar')
+    @endif
+
 </aside>
 <!-- main-sidebar -->

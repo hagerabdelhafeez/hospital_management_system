@@ -304,10 +304,12 @@
                             <form method="POST" action="{{ route('logout.user') }}">
                             @elseif(auth('doctor')->check())
                                 <form method="POST" action="{{ route('logout.doctor') }}">
-                            @elseif(auth('ray_employee')->check())
-                                <form method="POST" action="{{ route('logout.ray_employee') }}">
-                                @else
-                                    <form method="POST" action="{{ route('logout.admin') }}">
+                                @elseif(auth('ray_employee')->check())
+                                    <form method="POST" action="{{ route('logout.ray_employee') }}">
+                                    @elseif(auth('laboratorie_employee')->check())
+                                        <form method="POST" action="{{ route('logout.laboratorie_employee') }}">
+                                        @else
+                                            <form method="POST" action="{{ route('logout.admin') }}">
                         @endif
 
                         @csrf

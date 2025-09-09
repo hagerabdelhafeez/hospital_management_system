@@ -54,8 +54,9 @@
                                                         {{ __('dashboard/login.Choose_list') }}</option>
                                                     <option value="user">{{ __('dashboard/login.user') }}</option>
                                                     <option value="admin">{{ __('dashboard/login.admin') }}</option>
-                                                    <option value="doctor">الدخول دكتور</option>
+                                                    <option value="doctor">الدخول كدكتور</option>
                                                     <option value="ray_employee">الدخول كموظف اشعة</option>
+                                                    <option value="laboratorie_employee">الدخول كموظف مختبر</option>
                                                 </select>
                                             </div>
                                             {{-- User Form --}}
@@ -226,6 +227,51 @@
                                                             an Account</a></p>
                                                 </div>
                                             </div>
+
+                                            {{-- Laboratorie Employee Form --}}
+                                            <div class="login-form" id="laboratorie_employee">
+                                                <h5 class="font-weight-semibold mb-4">الدخول كموظف مختبر
+                                                </h5>
+                                                <form method="POST" action="{{ route('laboratorie_employee.login') }}">
+                                                    @csrf
+                                                    <div class="form-group">
+                                                        <label>Email</label>
+                                                        <input class="form-control" name="email"
+                                                            value="{{ old('email') }}" placeholder="Enter your email"
+                                                            type="email" required autofocus>
+                                                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Password</label>
+                                                        <input class="form-control" name="password"
+                                                            placeholder="Enter your password" type="password" required
+                                                            autocomplete="current-password">
+                                                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                                    </div>
+                                                    <button type="submit" class="btn btn-main-primary btn-block">Sign
+                                                        In</button>
+                                                    <div class="row row-xs">
+                                                        <div class="col-sm-6">
+                                                            <button class="btn btn-block"><i
+                                                                    class="fab fa-facebook-f"></i>
+                                                                Signup with Facebook</button>
+                                                        </div>
+                                                        <div class="col-sm-6 mg-t-10 mg-sm-t-0">
+                                                            <button class="btn btn-info btn-block"><i
+                                                                    class="fab fa-twitter"></i> Signup with
+                                                                Twitter</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                <div class="main-signin-footer mt-5">
+                                                    <p><a href="">Forgot password?</a></p>
+                                                    <p>Don't have an account? <a
+                                                            href="{{ url('/' . ($page = 'signup')) }}">Create
+                                                            an Account</a></p>
+                                                </div>
+                                            </div>
+
+
                                         </div>
                                     </div>
                                 </div>
