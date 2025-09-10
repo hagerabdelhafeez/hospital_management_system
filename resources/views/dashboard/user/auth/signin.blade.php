@@ -59,10 +59,11 @@
                                                     <option value="laboratorie_employee">الدخول كموظف مختبر</option>
                                                 </select>
                                             </div>
+
                                             {{-- User Form --}}
                                             <div class="login-form" id="user">
                                                 <h5 class="font-weight-semibold mb-4">{{ __('dashboard/login.user') }}</h5>
-                                                <form method="POST" action="{{ route('user.login') }}">
+                                                <form method="POST" action="{{ route('patient.login') }}">
                                                     @csrf
                                                     <div class="form-group">
                                                         <label>Email</label>

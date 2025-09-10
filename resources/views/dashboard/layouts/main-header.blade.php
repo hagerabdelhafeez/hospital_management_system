@@ -308,6 +308,8 @@
                                     <form method="POST" action="{{ route('logout.ray_employee') }}">
                                     @elseif(auth('laboratorie_employee')->check())
                                         <form method="POST" action="{{ route('logout.laboratorie_employee') }}">
+                                    @elseif(auth('patient')->check())
+                                        <form method="POST" action="{{ route('logout.patient') }}">
                                         @else
                                             <form method="POST" action="{{ route('logout.admin') }}">
                         @endif
