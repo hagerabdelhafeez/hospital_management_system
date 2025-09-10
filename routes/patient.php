@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PatientDashboard\PatientController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -22,6 +23,15 @@ Route::group(
         Route::get('/dashboard/patient', function () {
             return view('dashboard.dashboard_patient.dashboard');
         })->middleware(['auth:patient'])->name('dashboard.patient');
+
+        Route::middleware(['auth:patient'])->group(function () {
+            Route::get('invoices', [PatientController::class, 'invoices'])->name('invoices.patient');
+            Route::get('laboratories', [PatientController::class, 'laboratories'])->name('laboratories.patient');
+            Route::get('view_laboratories/{id}', [PatientController::class, 'viewLaboratories'])->name('laboratories.view');
+            Route::get('rays', [PatientController::class, 'rays'])->name('rays.patient');
+            Route::get('view_rays/{id}', [PatientController::class, 'viewRays'])->name('rays.view');
+            Route::get('payments', [PatientController::class, 'payments'])->name('payments.patient');
+        });
 
         require __DIR__.'/auth.php';
     });
