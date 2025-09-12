@@ -197,6 +197,20 @@
                             </p>
                         </div>
                         <div class="main-notification-list Notification-scroll">
+                            <div class="new-message">
+                                <a class="d-flex p-3 border-bottom" href="#">
+                                    <div class="notifyimg bg-pink">
+                                        <i class="la la-file-alt text-white"></i>
+                                    </div>
+                                    <div class="mr-3">
+                                        <h4 class="notification-label mb-1"></h4>
+                                        <div class="notification-subtext"></div>
+                                    </div>
+                                    <div class="mr-auto">
+                                        <i class="las la-angle-left text-left text-muted"></i>
+                                    </div>
+                                </a>
+                            </div>
                             @foreach (App\Models\Notification::where('username', Auth::user()->name)->where('reader_status', 0)->get() as $notification)
                                 <a class="d-flex p-3 border-bottom" href="#">
                                     <div class="notifyimg bg-pink">
@@ -290,7 +304,11 @@
     var notificationsWrapper = $('.dropdown-notifications');
     var notificationsCountElem = notificationsWrapper.find('p[data-count]');
     var notificationsCount = parseInt(notificationsCountElem.data('count'));
-    var notifications = notificationsWrapper.find('h5.notification-label');
+
+    var notifications = notificationsWrapper.find('h4.notification-label');
+    var newMessage = notificationsWrapper.find('.new-message');
+    newMessage.hide();
+
 
     // Enable pusher logging - don't include this in production
     Pusher.logToConsole = true;
@@ -301,29 +319,13 @@
 
     var channel = pusher.subscribe('create-invoice');
     channel.bind('App\\Events\\CreateInvoice', function(data) {
-        var existingNotifications = notifications.html();
         var newNotificationHtml = `
-        <h5 class="notification-label mb-1">` + data.message+data.patient + `</h5>
-        <div class="notification-subtext">`+data.created_at+`</div>
+        <h4 class="notification-label mb-1">` + data.message + data.patient + `</h4>
+        <div class="notification-subtext">` + data.created_at + `</div>
         `;
-        // var newNotificationHtml = `
-        // <div class="main-notification-list Notification-scroll">
-        //     <a class="d-flex p-3 border-bottom" href="#">
-        //         <div class="notifyimg bg-pink">
-        //             <i class="la la-file-alt text-white"></i>
-        //         </div>
-        //         <div class="mr-3">
-        //             <h5 class="notification-label mb-1">` + data.message + data.patient + `</h5>
-        //             <div class="notification-subtext">` + data.created_at + `</div>
-        //         </div>
-        //         <div class="mr-auto">
-        //             <i class="las la-angle-left text-left text-muted"></i>
-        //         </div>
-        //     </a>
-        // </div>
-        // `;
+        newMessage.show();
 
-        notifications.html(newNotificationHtml + existingNotifications);
+        notifications.html(newNotificationHtml);
         notificationsCount += 1;
         notificationsCountElem.attr('data-count', notificationsCount);
         notificationsWrapper.find('.notif-count').text(notificationsCount);

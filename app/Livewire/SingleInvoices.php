@@ -135,7 +135,8 @@ class SingleInvoices extends Component
 
                     $notifications = new Notification();
                     $notifications->username = $this->username;
-                    $notifications->message = 'تم اضافة فاتورة جديده :'.$this->username;
+                    $patient = Patient::find($this->patient_id);
+                    $notifications->message = 'تم اضافة فاتورة جديده :'.$patient->name;
                     $notifications->save();
 
                     $data = [
