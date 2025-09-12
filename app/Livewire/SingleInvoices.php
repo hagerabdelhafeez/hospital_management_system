@@ -2,13 +2,15 @@
 
 namespace App\Livewire;
 
-use App\Events\MyEvent;
+use App\Events\CreateInvoice;
 use App\Models\Doctor;
 use App\Models\FundAccount;
 use App\Models\Invoice;
+use App\Models\Notification;
 use App\Models\Patient;
 use App\Models\PatientAccount;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
@@ -29,6 +31,12 @@ class SingleInvoices extends Component
     public $service_id;
     public $single_invoice_id;
     public $updateMode = false;
+    public $username;
+
+    public function mount()
+    {
+        $this->username = Auth::user()->name;
+    }
 
     public function show_form_add()
     {
@@ -125,11 +133,16 @@ class SingleInvoices extends Component
                     $this->InvoiceSaved = true;
                     $this->show_table = true;
 
+                    $notifications = new Notification();
+                    $notifications->username = $this->username;
+                    $notifications->message = 'تم اضافة فاتورة جديده :'.$this->username;
+                    $notifications->save();
+
                     $data = [
                         'patient_id' => $this->patient_id,
                         'invoice_id' => $single_invoices->id,
                     ];
-                    event(new MyEvent($data));
+                    event(new CreateInvoice($data));
                 }
                 DB::commit();
             } catch (\Exception $e) {
