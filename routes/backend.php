@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\MyEvent;
 use App\Http\Controllers\Dashboard\AmbulanceController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DoctorController;
@@ -30,6 +31,7 @@ Route::group(
 
         // ################# Admin Dashboard Routes ######################
         Route::get('/dashboard/admin', function () {
+            // event(new MyEvent('hello Hager Abdo'));
             return view('dashboard.admin.dashboard');
         })->middleware(['auth:admin'])->name('dashboard.admin');
 

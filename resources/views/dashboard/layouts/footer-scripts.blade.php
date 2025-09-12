@@ -2,6 +2,8 @@
 <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
 <!-- JQuery min js -->
 <script src="{{ URL::asset('dashboard/plugins/jquery/jquery.min.js') }}"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script> --}}
 <!-- Bootstrap Bundle js -->
 <script src="{{ URL::asset('dashboard/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- Ionicons js -->
@@ -54,3 +56,5 @@
 <!--Internal  Notify js -->
 <script src="{{ URL::asset('dashboard/plugins/notify/js/notifIt.js') }}"></script>
 <script src="{{ URL::asset('/plugins/notify/js/notifit-custom.js') }}"></script>
+
+

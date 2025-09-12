@@ -31,6 +31,7 @@
             @include('dashboard.layouts.models')
             @include('dashboard.layouts.footer')
             @include('dashboard.layouts.footer-scripts')
+
 </body>
 
 </html>
