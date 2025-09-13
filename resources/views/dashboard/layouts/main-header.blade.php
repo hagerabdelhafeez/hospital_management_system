@@ -191,9 +191,9 @@
                                 <span class="badge badge-pill badge-warning mr-auto my-auto float-left">Mark All
                                     Read</span>
                             </div>
-                            <p data-count="{{ App\Models\Notification::where('username', Auth::user()->name)->where('reader_status', 0)->count() }}"
+                            <p data-count="{{ App\Models\Notification::where('user_id', Auth::user()->id)->where('reader_status', 0)->count() }}"
                                 class="dropdown-title-text subtext mb-0 text-white op-6 pb-0 tx-12 notif-count">
-                                {{ App\Models\Notification::where('username', Auth::user()->name)->where('reader_status', 0)->count() }}
+                                {{ App\Models\Notification::where('user_id', Auth::user()->id)->where('reader_status', 0)->count() }}
                             </p>
                         </div>
                         <div class="main-notification-list Notification-scroll">
@@ -211,7 +211,7 @@
                                     </div>
                                 </a>
                             </div>
-                            @foreach (App\Models\Notification::where('username', Auth::user()->name)->where('reader_status', 0)->get() as $notification)
+                            @foreach (App\Models\Notification::where('user_id', Auth::user()->id)->where('reader_status', 0)->get() as $notification)
                                 <a class="d-flex p-3 border-bottom" href="#">
                                     <div class="notifyimg bg-pink">
                                         <i class="la la-file-alt text-white"></i>
@@ -296,40 +296,39 @@
         </div>
     </div>
 </div>
-{{-- <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> --}}
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+@vite(['resources/js/app.js'])
 <script>
-    var notificationsWrapper = $('.dropdown-notifications');
-    var notificationsCountElem = notificationsWrapper.find('p[data-count]');
-    var notificationsCount = parseInt(notificationsCountElem.data('count'));
+    //Fix later
+    // Wait for the DOM to be fully loaded and Echo to be initialized
+    document.addEventListener('DOMContentLoaded', function() {
+        // Make sure Echo is defined before using it
+        if (typeof window.Echo !== 'undefined') {
+            var notificationsWrapper = $('.dropdown-notifications');
+            var notificationsCountElem = notificationsWrapper.find('p[data-count]');
+            var notificationsCount = parseInt(notificationsCountElem.data('count'));
 
-    var notifications = notificationsWrapper.find('h4.notification-label');
-    var newMessage = notificationsWrapper.find('.new-message');
-    newMessage.hide();
+            var notifications = notificationsWrapper.find('h4.notification-label');
+            var newMessage = notificationsWrapper.find('.new-message');
+            newMessage.hide();
 
-
-    // Enable pusher logging - don't include this in production
-    Pusher.logToConsole = true;
-
-    var pusher = new Pusher('5228910db55d35cf1f03', {
-        cluster: 'mt1'
-    });
-
-    var channel = pusher.subscribe('create-invoice');
-    channel.bind('App\\Events\\CreateInvoice', function(data) {
-        var newNotificationHtml = `
-        <h4 class="notification-label mb-1">` + data.message + data.patient + `</h4>
-        <div class="notification-subtext">` + data.created_at + `</div>
-        `;
-        newMessage.show();
-
-        notifications.html(newNotificationHtml);
-        notificationsCount += 1;
-        notificationsCountElem.attr('data-count', notificationsCount);
-        notificationsWrapper.find('.notif-count').text(notificationsCount);
-        notificationsWrapper.show();
+            Echo.private('create-invoice.{{ Auth::user()->id }}').listen('.create-invoice', (data) => {
+                var newNotificationHtml = `
+                <h4 class="notification-label mb-1">` + data.message + data.patient + `</h4>
+                <div class="notification-subtext">` + data.created_at + `</div>
+                `;
+                newMessage.show();
+                notifications.html(newNotificationHtml);
+                notificationsCount += 1;
+                notificationsCountElem.attr('data-count', notificationsCount);
+                notificationsWrapper.find('.notif-count').text(notificationsCount);
+                notificationsWrapper.show();
+            });
+        } else {
+            console.error('Echo is not defined. Make sure Laravel Echo is properly initialized.');
+        }
     });
 </script>
 <!-- /main-header -->
