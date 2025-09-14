@@ -66,7 +66,7 @@
                         class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('list.doctors') }}">قائمة الاطباء</a></li>
-                    <li><a class="slide-item" href="{{ route('laboratories.patient') }}">المحادثات الأخيرة</a></li>
+                    <li><a class="slide-item" href="{{ route('chat.doctors') }}">المحادثات الأخيرة</a></li>
                 </ul>
             </li>
         </ul>

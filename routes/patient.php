@@ -37,6 +37,7 @@ Route::group(
                 return Route::post('/custom/livewire/update', $handle);
             });
             Route::get('list/doctors', CreateChat::class)->name('list.doctors');
+            Route::view('chat/doctors', 'dashboard.chat.chat')->name('chat.doctors');
         });
 
         require __DIR__.'/auth.php';
