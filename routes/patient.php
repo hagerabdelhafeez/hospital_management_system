@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PatientDashboard\PatientController;
+use App\Livewire\Chat\CreateChat;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -31,6 +32,7 @@ Route::group(
             Route::get('rays', [PatientController::class, 'rays'])->name('rays.patient');
             Route::get('view_rays/{id}', [PatientController::class, 'viewRays'])->name('rays.view');
             Route::get('payments', [PatientController::class, 'payments'])->name('payments.patient');
+            Route::get('list/doctors', CreateChat::class)->name('list.doctors');
         });
 
         require __DIR__.'/auth.php';
