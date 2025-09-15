@@ -13,4 +13,9 @@ class Conversation extends Model
         return $query->where('sender_email', $auth_email)->where('receiver_email', $receiver_email)
             ->orWhere('sender_email', $receiver_email)->orWhere('receiver_email', $auth_email);
     }
+
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
 }
