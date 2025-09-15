@@ -5,7 +5,9 @@ use App\Http\Controllers\DoctorDashboard\DiagnosticController;
 use App\Http\Controllers\DoctorDashboard\LaboratorieController;
 use App\Http\Controllers\DoctorDashboard\PatientDetailsController;
 use App\Http\Controllers\DoctorDashboard\RayController;
+use App\Livewire\Chat\CreateChat;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(
@@ -27,6 +29,11 @@ Route::group(
             Route::resource('Laboratories', LaboratorieController::class);
             Route::get('show_laboratorie/{id}', [InvoiceController::class, 'showLaboratorie'])->name('show.laboratorie');
             Route::get('patient_details/{id}', [PatientDetailsController::class, 'index'])->name('patient_details');
+            Livewire::setUpdateRoute(function ($handle) {
+                return Route::post('/custom/livewire/update', $handle);
+            });
+            Route::get('list/patients', CreateChat::class)->name('list.patients');
+            Route::view('chat/patients', 'dashboard.chat.chat')->name('chat.patients');
         });
 
         Route::get('/404', function () {
