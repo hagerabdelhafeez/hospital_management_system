@@ -14,6 +14,7 @@ class Chatlist extends Component
     public $auth_email;
     public $receiver_user;
     public $selected_conversation;
+    protected $listeners = ['refresh' => '$refresh'];
 
     public function mount()
     {

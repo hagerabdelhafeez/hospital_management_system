@@ -22,6 +22,18 @@ class Chatbox extends Component
         $this->auth_email = Auth::user()->email;
     }
 
+    #[On('push-message')]
+    public function pushMessage($message)
+    {
+        $newMessage = Message::find($message);
+        if ($newMessage && $this->selected_conversation && $newMessage->conversation_id == $this->selected_conversation->id) {
+            if (!$this->messages) {
+                $this->messages = collect();
+            }
+            $this->messages->push($newMessage);
+        }
+    }
+
     #[On('load-conversation-doctor')]
     public function loadConversationDoctor(Conversation $conversation, Doctor $receiver)
     {

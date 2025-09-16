@@ -1,4 +1,4 @@
-<div wire:ignore>
+<div>
     <div>
         <div class="main-chat-list" id="ChatList">
             @foreach ($conversations as $conversation)
