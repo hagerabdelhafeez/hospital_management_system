@@ -22,6 +22,9 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ], function () {
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/livewire/update', $handle);
+        });
         Route::get('/dashboard/patient', function () {
             return view('dashboard.dashboard_patient.dashboard');
         })->middleware(['auth:patient'])->name('dashboard.patient');
@@ -33,11 +36,8 @@ Route::group(
             Route::get('rays', [PatientController::class, 'rays'])->name('rays.patient');
             Route::get('view_rays/{id}', [PatientController::class, 'viewRays'])->name('rays.view');
             Route::get('payments', [PatientController::class, 'payments'])->name('payments.patient');
-            Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('/custom/livewire/update', $handle);
-            });
-            Route::get('list/doctors', CreateChat::class)->name('list.doctors');
-            Route::view('chat/doctors', 'dashboard.chat.chat')->name('chat.doctors');
+            Route::get('list/doctors', CreateChat::class)->name('list.doctors.chat');
+            Route::view('chat/doctors', 'dashboard.chat.chat')->name('chat.doctors.chat');
         });
 
         require __DIR__.'/auth.php';

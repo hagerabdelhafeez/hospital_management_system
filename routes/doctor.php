@@ -15,6 +15,9 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ], function () {
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/livewire/update', $handle);
+        });
         Route::get('/dashboard/doctor', function () {
             return view('dashboard.doctor.dashboard');
         })->middleware(['auth:doctor'])->name('dashboard.doctor');
@@ -29,9 +32,6 @@ Route::group(
             Route::resource('Laboratories', LaboratorieController::class);
             Route::get('show_laboratorie/{id}', [InvoiceController::class, 'showLaboratorie'])->name('show.laboratorie');
             Route::get('patient_details/{id}', [PatientDetailsController::class, 'index'])->name('patient_details');
-            Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('/custom/livewire/update', $handle);
-            });
             Route::get('list/patients', CreateChat::class)->name('list.patients');
             Route::view('chat/patients', 'dashboard.chat.chat')->name('chat.patients');
         });

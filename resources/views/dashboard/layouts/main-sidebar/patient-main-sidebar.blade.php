@@ -65,8 +65,8 @@
                     </svg><span class="side-menu__label">المحادثات</span><i
                         class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
-                    <li><a class="slide-item" href="{{ route('list.doctors') }}">قائمة الاطباء</a></li>
-                    <li><a class="slide-item" href="{{ route('chat.doctors') }}">المحادثات الأخيرة</a></li>
+                    <li><a class="slide-item" href="{{ route('list.doctors.chat') }}">قائمة الاطباء</a></li>
+                    <li><a class="slide-item" href="{{ route('chat.doctors.chat') }}">المحادثات الأخيرة</a></li>
                 </ul>
             </li>
         </ul>

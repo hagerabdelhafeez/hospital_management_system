@@ -23,8 +23,9 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath'],
     ], function () {
-        // ################# User Dashboard Routes #####################
-
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/livewire/update', $handle);
+        });
         Route::get('/dashboard/user', function () {
             return view('dashboard.user.dashboard');
         })->middleware(['auth'])->name('dashboard.user');
@@ -50,9 +51,6 @@ Route::group(
             Route::resource('Payment', PaymentAccountController::class);
             Route::resource('ray_employee', RayEmployeeController::class);
             Route::resource('laboratorie_employee', LaboratorieEmployeeController::class);
-            Livewire::setUpdateRoute(function ($handle) {
-                return Route::post('/custom/livewire/update', $handle);
-            });
             Route::view('add_group_services', 'livewire.GroupServices.include_create')->name('Add_GroupServices');
             Route::view('single_invoices', 'livewire.single_invoices.index')->name('single_invoices');
             Route::view('Print_single_invoices', 'livewire.single_invoices.print')->name('Print_single_invoices');

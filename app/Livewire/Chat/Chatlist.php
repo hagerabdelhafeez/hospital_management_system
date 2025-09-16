@@ -13,6 +13,7 @@ class Chatlist extends Component
     public $conversations;
     public $auth_email;
     public $receiver_user;
+    public $selected_conversation;
 
     public function mount()
     {
@@ -28,6 +29,17 @@ class Chatlist extends Component
         }
         if (isset($request)) {
             return $this->receiver_user->$request;
+        }
+    }
+
+    public function chatUserSelected(Conversation $conversation, $receiver_id)
+    {
+        $this->selected_conversation = $conversation;
+        $this->receiver_user = Doctor::find($receiver_id);
+        if (Auth::guard('patient')->check()) {
+            $this->dispatch('load-conversation-doctor', conversation: $this->selected_conversation, receiver: $this->receiver_user);
+        } else {
+            $this->dispatch('load-conversation-patient', conversation: $this->selected_conversation, receiver: $this->receiver_user);
         }
     }
 
