@@ -41,6 +41,7 @@ class Chatlist extends Component
         } else {
             $this->dispatch('load-conversation-patient', conversation: $this->selected_conversation, receiver: $this->receiver_user);
         }
+        $this->dispatch('update-message', conversation: $this->selected_conversation, receiver: $this->receiver_user);
     }
 
     public function render()
