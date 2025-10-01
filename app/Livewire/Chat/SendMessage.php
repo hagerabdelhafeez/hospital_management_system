@@ -9,6 +9,8 @@ use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
+use App\Events\MessageSent2;
+use App\Models\Patient;
 
 class SendMessage extends Component
 {
@@ -37,6 +39,13 @@ class SendMessage extends Component
         $this->receiver_user = $receiver;
     }
 
+    #[On('update-message2')]
+    public function updateMessage2(Conversation $conversation, Patient $receiver)
+    {
+        $this->selected_conversation = $conversation;
+        $this->receiver_user = $receiver;
+    }
+
     public function sendMessage()
     {
         if (!$this->body || !$this->selected_conversation || !$this->receiver_user) {
@@ -59,12 +68,21 @@ class SendMessage extends Component
     #[On('dispatchSentMessage')]
     public function dispatchSentMessage()
     {
-        broadcast(new MessageSent(
-            $this->sender,
-            $this->receiver_user,
-            $this->createdMessage,
-            $this->selected_conversation
-        ));
+        if (Auth::guard('patient')->check()) {
+            broadcast(new MessageSent(
+                $this->sender,
+                $this->receiver_user,
+                $this->createdMessage,
+                $this->selected_conversation
+            ));
+        } else {
+            broadcast(new MessageSent2(
+                $this->sender,
+                $this->receiver_user,
+                $this->createdMessage,
+                $this->selected_conversation
+            ));
+        }
     }
 
     public function render()

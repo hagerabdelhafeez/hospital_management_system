@@ -39,10 +39,11 @@ class Chatlist extends Component
         $this->receiver_user = Doctor::find($receiver_id);
         if (Auth::guard('patient')->check()) {
             $this->dispatch('load-conversation-doctor', conversation: $this->selected_conversation, receiver: $this->receiver_user);
+            $this->dispatch('update-message', conversation: $this->selected_conversation, receiver: $this->receiver_user);
         } else {
             $this->dispatch('load-conversation-patient', conversation: $this->selected_conversation, receiver: $this->receiver_user);
+            $this->dispatch('update-message2', conversation: $this->selected_conversation, receiver: $this->receiver_user);
         }
-        $this->dispatch('update-message', conversation: $this->selected_conversation, receiver: $this->receiver_user);
     }
 
     public function render()
