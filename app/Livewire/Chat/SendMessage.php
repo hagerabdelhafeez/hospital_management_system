@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Chat;
 
+use App\Events\MessageSent;
 use App\Models\Conversation;
 use App\Models\Doctor;
 use App\Models\Message;
@@ -15,10 +16,18 @@ class SendMessage extends Component
     public $selected_conversation;
     public $receiver_user;
     public $auth_email;
+    public $sender;
+    public $createdMessage;
 
     public function mount()
     {
-        $this->auth_email = Auth::user()->email;
+        if (Auth::guard('patient')->check()) {
+            $this->sender = Auth::guard('patient')->user();
+            $this->auth_email = Auth::guard('patient')->user()->email;
+        } else {
+            $this->sender = Auth::guard('doctor')->user();
+            $this->auth_email = Auth::guard('doctor')->user()->email;
+        }
     }
 
     #[On('update-message')]
@@ -33,17 +42,29 @@ class SendMessage extends Component
         if (!$this->body || !$this->selected_conversation || !$this->receiver_user) {
             return;
         }
-        $createdMessage = Message::create([
+        $this->createdMessage = Message::create([
             'conversation_id' => $this->selected_conversation->id,
             'sender_email' => $this->auth_email,
             'receiver_email' => $this->receiver_user->email,
             'body' => $this->body,
         ]);
-        $this->selected_conversation->last_time_message = $createdMessage->created_at;
+        $this->selected_conversation->last_time_message = $this->createdMessage->created_at;
         $this->selected_conversation->save();
-        $this->dispatch('push-message', message: $createdMessage->id);
+        $this->dispatch('push-message', message: $this->createdMessage->id);
         $this->dispatch('refresh');
+        $this->dispatch('dispatchSentMessage')->self();
         $this->reset('body');
+    }
+
+    #[On('dispatchSentMessage')]
+    public function dispatchSentMessage()
+    {
+        broadcast(new MessageSent(
+            $this->sender,
+            $this->receiver_user,
+            $this->createdMessage,
+            $this->selected_conversation
+        ));
     }
 
     public function render()
