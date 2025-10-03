@@ -1,9 +1,11 @@
 <div class="nav-outer clearfix">
-    <!--Mobile Navigation Toggler For Mobile--><div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+    <!--Mobile Navigation Toggler For Mobile-->
+    <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
     <nav class="main-menu navbar-expand-md navbar-light">
         <div class="navbar-header">
             <!-- Togg le Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="icon flaticon-menu"></span>
             </button>
         </div>
@@ -104,6 +106,19 @@
                 </li>
 
                 <li><a href="contact.html">تواصل معانا</a></li>
+
+                <li class="dropdown"><a href="#">{{ LaravelLocalization::getCurrentLocaleNative() }}</a>
+                    <ul>
+                        @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                            <li>
+                                <a rel="alternate" hreflang="{{ $localeCode }}"
+                                    href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                    {{ $properties['native'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
             </ul>
         </div>
 
@@ -124,6 +139,7 @@
             <li><a href="#"><span class="fab fa-twitter"></span></a></li>
             <li><a href="#"><span class="fab fa-skype"></span></a></li>
             <li><a href="#"><span class="fab fa-linkedin-in"></span></a></li>
+            <li><a href="{{ route('dashboard.user') }}" title="تسجيل دخول"><span class="fas fa-user"></span></a></li>
         </ul>
 
         <!-- Search Btn -->
