@@ -2,6 +2,7 @@
 
 use App\Events\MyEvent;
 use App\Http\Controllers\Dashboard\AmbulanceController;
+use App\Http\Controllers\Dashboard\AppointmentsController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DoctorController;
 use App\Http\Controllers\Dashboard\InsuranceController;
@@ -57,6 +58,10 @@ Route::group(
 
             Route::view('group_invoices', 'livewire.Group_invoices.index')->name('group_invoices');
             Route::view('group_Print_single_invoices', 'livewire.Group_invoices.print')->name('group_Print_single_invoices');
+
+            Route::get('appointments', [AppointmentsController::class, 'index'])->name('appointments.index');
+            Route::put('appointments/approval/{id}', [AppointmentsController::class, 'approval'])->name('appointments.approval');
+            Route::get('appointments/approval', [AppointmentsController::class, 'index2'])->name('appointments.index2');
         });
 
         require __DIR__.'/auth.php';

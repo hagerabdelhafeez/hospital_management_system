@@ -13,5 +13,14 @@ class Appointment extends Model
 
     protected $fillable = ['name'];
 
-    public $translatedAttributes = ['name'];
+    public $translatedAttributes = ['name', 'email', 'phone', 'notes', 'section_id', 'doctor_id', 'type', 'appointment_date'];
+
+    public function section()
+    {
+        return $this->belongsTo(Section::class, 'section_id');
+    }
+    public function doctor()
+    {
+        return $this->belongsTo(Doctor::class, 'doctor_id');
+    }
 }

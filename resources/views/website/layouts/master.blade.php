@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>برنامج المستشفيات</title>
     @include('website.layouts.style')
+    @livewireStyles
 </head>
 
 <body>

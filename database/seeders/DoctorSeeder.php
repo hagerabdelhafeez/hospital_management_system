@@ -14,11 +14,11 @@ class DoctorSeeder extends Seeder
     public function run(): void
     {
         Doctor::factory(30)->create();
-        $appointments = Appointment::all();
-        Doctor::all()->each(function ($doctor) use ($appointments) {
-            $doctor->doctorappointments()->attach(
-                $appointments->random(rand(1, 7))->pluck('id')->toArray()
-            );
-        });
+        // $appointments = Appointment::all();
+        // Doctor::all()->each(function ($doctor) use ($appointments) {
+        //     $doctor->doctorappointments()->attach(
+        //         $appointments->random(rand(1, 7))->pluck('id')->toArray()
+        //     );
+        // });
     }
 }
