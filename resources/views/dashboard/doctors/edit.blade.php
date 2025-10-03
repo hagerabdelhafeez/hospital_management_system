@@ -126,7 +126,16 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
 
+                        <div class="row row-xs align-items-center mg-b-20">
+                            <div class="col-md-1">
+                                <label for="exampleInputEmail1">عدد الكشوفات اليومية</label>
+                            </div>
+                            <div class="col-md-11 mg-t-5 mg-md-t-0">
+                                <input class="form-control" name="number_of_patients"
+                                    value="{{ $doctor->number_of_patients }}" type="text">
+                            </div>
                         </div>
 
                         <div class="row row-xs align-items-center mg-b-20">

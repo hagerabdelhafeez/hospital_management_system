@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->foreignIdFor(Section::class)->constrained('sections')->onDelete('cascade');
             $table->string('phone');
             $table->boolean('status')->default(true);
+            $table->integer('number_of_patients')->default(0);
             $table->timestamps();
         });
     }

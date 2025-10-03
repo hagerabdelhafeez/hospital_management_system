@@ -31,5 +31,12 @@ class AppointmentsController extends Controller
         return redirect()->back();
     }
 
+    public function destroy($id) {
+        $appointment = Appointment::findOrFail($id);
+        $appointment->delete();
+        session()->flash('delete');
+        return redirect()->back();
+    }
+
 
 }

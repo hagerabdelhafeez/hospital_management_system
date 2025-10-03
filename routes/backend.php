@@ -62,6 +62,7 @@ Route::group(
             Route::get('appointments', [AppointmentsController::class, 'index'])->name('appointments.index');
             Route::put('appointments/approval/{id}', [AppointmentsController::class, 'approval'])->name('appointments.approval');
             Route::get('appointments/approval', [AppointmentsController::class, 'index2'])->name('appointments.index2');
+            Route::delete('appointments/destroy/{id}', [AppointmentsController::class, 'destroy'])->name('appointments.destroy');
         });
 
         require __DIR__.'/auth.php';

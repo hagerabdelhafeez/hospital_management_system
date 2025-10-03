@@ -1,10 +1,14 @@
 <div>
     @if ($message == true)
         <script>
-            allert("تم الحجز بنجاح");
+            alert("تم الحجز بنجاح");
         </script>
     @endif
-
+    @if ($message2 == true)
+        <script>
+            alert("هذا الموعد محجوز من قبل");
+        </script>
+    @endif
     <div class="inner-column">
         <!-- Sec Title -->
         <div class="sec-title">
@@ -49,6 +53,12 @@
                     <div class="col-lg-12 col-md-6 col-sm-12 form-group">
                         <input type="tel" name="phone" wire:model="phone" placeholder="رقم الهاتف" required="">
                         <span class="icon fas fa-phone"></span>
+                    </div>
+
+                    <div class="col-lg-12 col-md-6 col-sm-12 form-group">
+                        <label for="exampleFormControlSelect1">تاريخ الموعد</label>
+                        <input type="date" name="appointment_patient" wire:model="appointment_patient" required
+                            class="form-control">
                     </div>
 
                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">

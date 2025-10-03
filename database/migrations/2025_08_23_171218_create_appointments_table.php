@@ -17,6 +17,7 @@ return new class extends Migration {
             $table->text('notes')->nullable();
             $table->enum('type', ['مؤكد', 'غير مؤكد', 'منتهي'])->default('غير مؤكد');
             $table->dateTime('appointment_date')->nullable();
+            $table->date('appointment_patient')->nullable();
             $table->foreignId('section_id')->constrained()->onDelete('cascade');
             $table->foreignId('doctor_id')->constrained()->onDelete('cascade');
             $table->timestamps();

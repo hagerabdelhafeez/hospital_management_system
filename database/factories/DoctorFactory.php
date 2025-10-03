@@ -27,6 +27,7 @@ class DoctorFactory extends Factory
             'section_id' => Section::inRandomOrder()->first()->id,
             'password' => static::$password ??= Hash::make('password'),
             'phone' => $this->faker->phoneNumber(),
+            'number_of_patients' => $this->faker->numberBetween(0, 10),
         ];
     }
 }
