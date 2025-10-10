@@ -1,0 +1,67 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20251010194705
+Username: HAGER\hager
+RunAs User: HAGER\hager
+Configuration Name: 
+Machine: HAGER (Microsoft Windows NT 10.0.26100.0)
+Host Application: C:\windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command & {Start-Transcript -Path 'c:\laragon\www\hospital-management-system\scripts\remove-plugins-log.txt' -Force; & 'c:\laragon\www\hospital-management-system\scripts\remove-unused-plugins.ps1'; Stop-Transcript }
+Process ID: 8980
+PSVersion: 5.1.26100.6725
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.6725
+BuildVersion: 10.0.26100.6725
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is c:\laragon\www\hospital-management-system\scripts\remove-plugins-log.txt
+Not present: public\dashboard\plugins\@fortawesome
+Not present: public\dashboard\plugins\accordion
+Not present: public\dashboard\plugins\boxicons
+Not present: public\dashboard\plugins\clipboard
+Not present: public\dashboard\plugins\counters
+Not present: public\dashboard\plugins\cryptofont
+Not present: public\dashboard\plugins\custom-scroll
+Not present: public\dashboard\plugins\darggable
+Not present: public\dashboard\plugins\echart
+Not present: public\dashboard\plugins\fancyuploder
+Not present: public\dashboard\plugins\fileuploads
+Not present: public\dashboard\plugins\flot.curvedlines
+Not present: public\dashboard\plugins\fullcalendar
+Not present: public\dashboard\plugins\gallery
+Not present: public\dashboard\plugins\gmaps
+Not present: public\dashboard\plugins\horizontal-menu
+Not present: public\dashboard\plugins\images-comparsion
+Not present: public\dashboard\plugins\inputtags
+Not present: public\dashboard\plugins\jquery-countdown
+Not present: public\dashboard\plugins\jquery-nice-select
+Not present: public\dashboard\plugins\jquery-steps
+Not present: public\dashboard\plugins\jquery-ui-slider
+Not present: public\dashboard\plugins\jQuerytransfer
+Not present: public\dashboard\plugins\leaflet
+Not present: public\dashboard\plugins\line-awesome
+Not present: public\dashboard\plugins\materialdesignicons
+Not present: public\dashboard\plugins\morris.js
+Not present: public\dashboard\plugins\multislider
+Not present: public\dashboard\plugins\newsticker
+Not present: public\dashboard\plugins\parsleyjs
+Not present: public\dashboard\plugins\particles.js-master
+Not present: public\dashboard\plugins\peity
+Not present: public\dashboard\plugins\popper.js
+Not present: public\dashboard\plugins\prism
+Not present: public\dashboard\plugins\prismjs
+Not present: public\dashboard\plugins\quill
+Not present: public\dashboard\plugins\simple-line-icons
+Not present: public\dashboard\plugins\sweet-alert
+Not present: public\dashboard\plugins\tabs
+Not present: public\dashboard\plugins\telephoneinput
+Not present: public\dashboard\plugins\themify
+Not present: public\dashboard\plugins\timeline
+Not present: public\dashboard\plugins\treeview
+Done. Removed count: 0
+**********************
+Windows PowerShell transcript end
+End time: 20251010194705
+**********************
